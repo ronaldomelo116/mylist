@@ -1,7 +1,27 @@
 <!doctype html>
-<html>
+<html lang="pt-br">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- SEO Básico (Para buscadores como o Google) -->
     <title>Minha Lista de Tarefas</title>
+    <meta
+      name="description"
+      content="Um lista virtual para você organizar suas tarefas diárias de forma simples e rápida."
+    />
+    <meta name="author" content="Seu Nome" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph (Para quando você compartilhar o link no WhatsApp, Telegram, LinkedIn) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Minha Lista de Tarefas" />
+    <meta
+      property="og:description"
+      content="Crie listas personalizadas e gerencie seus afazeres."
+    />
+    <meta property="og:image" content="link-de-uma-foto-do-seu-projeto.png" />
+    
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -13,34 +33,34 @@
       <section>
         <h2>Adicionar nova lista</h2>
         <form id="form-tarefa">
-          <label for="nova-tarefa">o que você precisa fazer?</label>
+          <label for="input-title">nome da lista</label>
+          <input
+            type="text"
+            id="input-title"
+            name="name-list"
+            placeholder="Digite o nome da sua lista..."
+          />
+          <label for="nova-tarefa">crie sua lista</label>
           <input
             type="text"
             id="nova-tarefa"
             name="tarefa"
             required
-            placeholder="Ex: adione nome ou número"
+            placeholder="Ex: Adicionar nome ou número"
           />
           <button type="button" id="button-add">Adicionar</button>
         </form>
       </section>
-      <section class="my-list"> 
-        <h2>Sua lista</h2>
-        <input
-          type="text"
-          id="name-list"
-          name="name-list"
-          label
-          placeholder=" Adicionar titulo da lista"
-        />
-        <h2></h2>
-        <ul id="list-tarefas">
-           <!-- Os itens (li) entrarão aqui -->
-        </ul>
+      <section class="my-list">
+        <div class="container-list">
+          <h2 id="list-title">Minha Lista</h2>
+          <ul id="list-tarefas">
+            <!-- Os itens (li) entrarão aqui -->
+          </ul>
+        </div>
       </section>
     </main>
 
     <script src="script.js"></script>
   </body>
 </html>
-
