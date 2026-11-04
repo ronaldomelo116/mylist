@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Minha Lista de Tarefas</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Minha lista</h1>
+    </header>
+
+    <main>
+      <section>
+        <h2>Adicionar nova lista</h2>
+        <form id="form-tarefa">
+          <label for="nova-tarefa">o que você precisa fazer?</label>
+          <input
+            type="text"
+            id="nova-tarefa"
+            name="tarefa"
+            required
+            placeholder="Ex: adione nome ou número"
+          />
+          <button type="button" id="button-add">Adicionar</button>
+        </form>
+      </section>
+      <section class="my-list"> 
+        <h2>Sua lista</h2>
+        <input
+          type="text"
+          id="name-list"
+          name="name-list"
+          label
+          placeholder=" Adicionar titulo da lista"
+        />
+        <h2></h2>
+        <ul id="list-tarefas">
+           <!-- Os itens (li) entrarão aqui -->
+        </ul>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
