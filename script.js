@@ -1,25 +1,67 @@
 const buttonAdd = document.getElementById("button-add");
-const newTarefa = document.getElementById("nova-tarefa");
-const listTarefa = document.getElementById("list-tarefas");
+const newTask = document.getElementById("nova-tarefa");
+const listTask = document.getElementById("list-tarefas");
 const inputTitle = document.getElementById("input-title");
 const listTitle = document.getElementById("list-title");
 
+let tasks = JSON.parse(localStorage.getItem("my_tasks")) || [];
+
+function saveTasks() {
+  localStorage.setItem("my_tasks", JSON.stringify(tasks));
+}
+
 inputTitle.addEventListener("input", () => {
-  if (inputTitle.value.trim() !== "") {
-    listTitle.textContent = inputTitle.value;
-  } else {
-    listTitle.textContent = "Minha Lista";
+  const title = inputTitle.value.trim();
+  listTitle.textContent = title || "Minha Lista";
+  localStorage.setItem("title_list", title); // Salva o título
+});
+
+const titleSave = localStorage.getItem("title_list");
+if (titleSave) {
+  inputTitle.value = titleSave;
+  listTitle.textContent = titleSave;
+}
+
+// 1. Criamos uma função única para adicionar a tarefa
+function addTask() {
+  const textInput = newTask.value.trim();
+
+
+    if (textInput !== "") {
+      tasks.push(textInput);
+
+      saveTasks();
+      renderTasks();
+
+      newTask.value = "";
+      newTask.focus();
+    } else {
+      // Se estiver vazio, exibe o alerta
+      alert("adicione o valor");
+    }
+  }
+
+
+// 2. Ouvinte para o CLIQUE do botão
+buttonAdd.addEventListener("click", addTask);
+
+// 3. Ouvinte para a tecla ENTER dentro do input
+newTask.addEventListener("keydown", (evento) => {
+  if (evento.key === "Enter") {
+    addTask();
   }
 });
 
-// 1. Criamos uma função única para adicionar a tarefa
-function adicionarTarefa() {
-  const textInput = newTarefa.value.trim();
+//função de Renderização
+function renderTasks() {
+  //limpa a lista atual na tela para não duplicar itens
+  listTask.innerHTML = "";
 
-  if (textInput !== "") {
+  //percorre cada tarefa do array
+
+  tasks.forEach((taskText, index) => {
     const newLi = document.createElement("li");
-
-    newLi.textContent = textInput + " ";
+    newLi.textContent = taskText + " ";
 
     const buttonDel = document.createElement("button");
     buttonDel.textContent = "x";
@@ -27,28 +69,14 @@ function adicionarTarefa() {
     buttonDel.style.marginLeft = "10px";
 
     buttonDel.addEventListener("click", () => {
-      newLi.remove();
+      tasks.splice(index, 1);
+      saveTasks();
+      renderTasks();
     });
 
     newLi.appendChild(buttonDel);
-
-    listTarefa.appendChild(newLi);
-
-    // Limpa o input e devolve o foco
-    newTarefa.value = "";
-    newTarefa.focus();
-  } else {
-    // Se estiver vazio, exibe o alerta
-    alert("adicione o valor");
-  }
+    listTask.appendChild(newLi);
+  });
 }
 
-// 2. Ouvinte para o CLIQUE do botão
-buttonAdd.addEventListener("click", adicionarTarefa);
-
-// 3. Ouvinte para a tecla ENTER dentro do input
-newTarefa.addEventListener("keydown", (evento) => {
-  if (evento.key === "Enter") {
-    adicionarTarefa();
-  }
-});
+renderTasks();
