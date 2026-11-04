@@ -52,4 +52,3 @@ newTarefa.addEventListener("keydown", (evento) => {
     adicionarTarefa();
   }
 });
-
