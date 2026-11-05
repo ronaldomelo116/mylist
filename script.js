@@ -13,7 +13,7 @@ let tasks = JSON.parse(localStorage.getItem("my_tasks")) || [];
 
 function saveTasks() {
   localStorage.setItem("my_tasks", JSON.stringify(tasks));
-}
+};
 
 inputTitle.addEventListener("input", () => {
   const title = inputTitle.value.trim();
@@ -25,31 +25,26 @@ const titleSave = localStorage.getItem("title_list");
 if (titleSave) {
   inputTitle.value = titleSave;
   listTitle.textContent = titleSave;
-}
+};
 
 // 1. Criamos uma função única para adicionar a tarefa
 function addTask() {
   const textInput = newTask.value.trim();
 
-
   if (textInput !== "") {
     tasks.push(textInput);
-
     saveTasks();
     renderTasks();
-
     newTask.value = "";
     newTask.focus();
   } else {
     // Se estiver vazio, exibe o alerta
     alert("adicione o valor");
   }
-}
-
+};
 
 // 2. Ouvinte para o CLIQUE do botão
 buttonAdd.addEventListener("click", addTask);
-
 // 3. Ouvinte para a tecla ENTER dentro do input
 newTask.addEventListener("keydown", (evento) => {
   if (evento.key === "Enter") {
@@ -61,9 +56,7 @@ newTask.addEventListener("keydown", (evento) => {
 function renderTasks() {
   //limpa a lista atual na tela para não duplicar itens
   listTask.innerHTML = "";
-
   //percorre cada tarefa do array
-
   tasks.forEach((taskText, index) => {
     const newLi = document.createElement("li");
     newLi.textContent = taskText + " ";
@@ -74,18 +67,15 @@ function renderTasks() {
     buttonDel.style.marginLeft = "10px";
 
     buttonDel.addEventListener("click", () => {
-      
       indexParaApagar = index;
-
-       itemNomeModal.textContent = `"${taskText}"`;
-     
+      itemNomeModal.textContent = `"${taskText}"`;
       modalDelete.showModal();
     });
 
     newLi.appendChild(buttonDel);
     listTask.appendChild(newLi);
   });
-}
+};
 
 btnY.addEventListener("click", () => {
   if (indexParaApagar !== null) {
@@ -97,7 +87,7 @@ btnY.addEventListener("click", () => {
 });
 
 btnN.addEventListener("click", () => {
-  modalDelete.close(); // Fecha o popup sem fazer nada
+    modalDelete.close(); // Fecha o popup sem fazer nada
 });
 
 renderTasks();
