@@ -89,6 +89,28 @@ form {
   width: 100%;
 }
 
+.section-title {
+   position: relative;
+ 
+}
+
+
+#btn-copy {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-buttonAdd);
+  transition: color 0.3s ease;
+}
+
+#btn-copy:hover {
+  color: #333;
+}
+
 #list-title {
   margin-top: 20px;
 }

@@ -41,14 +41,19 @@
 
     <section class="input-group">
       <label for="nova-tarefa">crie sua lista</label>
-      <input type="text" id="nova-tarefa" name="tarefa" required placeholder="Ex: Adicionar nome ou número" />
+      <input type="text" id="nova-tarefa" name="tarefa" required placeholder="Digite uma nova tarefa..." />
       <button type="button" id="button-add">Adicionar</button>
+    </section>
+
+    <section class="section-title">
+      <button type="button" id="btn-copy" title="Copiar lista"><i class="bi bi-copy"></i></button>
+      <h2 id="list-title">Minha Lista</h2>
+      <span id="task-counter"></span>
     </section>
 
     <section class="my-list">
       <div class="container-list">
-        <h2 id="list-title">Minha Lista</h2>
-        <span id="task-counter"></span>
+
         <ul id="list-tarefas">
           <!-- Os itens (li) entrarão aqui -->
         </ul>

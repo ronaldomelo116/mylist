@@ -4,6 +4,7 @@ const listTask = document.getElementById("list-tarefas");
 const inputTitle = document.getElementById("input-title");
 const listTitle = document.getElementById("list-title");
 const taskCounter = document.getElementById("task-counter");
+const btnCopy = document.getElementById("btn-copy");
 const modalDelete = document.getElementById("modal-delete");
 const btnY = document.getElementById("btn-y");
 const btnN = document.getElementById("btn-n");
@@ -67,6 +68,7 @@ function renderTasks() {
     buttonDel.innerHTML = `<i class="bi bi-trash-fill"></i>`;
     buttonDel.classList.add("btn-del");
     buttonDel.style.marginLeft = "10px";
+    buttonDel.title = "Excluir tarefa";
 
     buttonDel.addEventListener("click", () => {
       indexParaApagar = index;
@@ -89,7 +91,21 @@ btnY.addEventListener("click", () => {
 });
 
 btnN.addEventListener("click", () => {
-    modalDelete.close(); // Fecha o popup sem fazer nada
+  modalDelete.close(); // Fecha o popup sem fazer nada
+});
+
+btnCopy.addEventListener("click", () => {
+  let textToCopy = listTitle.textContent + "\n\n";
+  tasks.forEach((tarefaAtual) => {
+    textToCopy += "- " + tarefaAtual + "\n";
+  });
+  navigator.clipboard.writeText(textToCopy)
+  .then(() => {
+    alert("Lista copiada com sucesso!");
+  })
+  .catch((err) => {
+    console.error("Erro ao copiar a lista: ", err);
+  });
 });
 
 renderTasks();
