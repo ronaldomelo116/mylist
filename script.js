@@ -3,6 +3,7 @@ const newTask = document.getElementById("nova-tarefa");
 const listTask = document.getElementById("list-tarefas");
 const inputTitle = document.getElementById("input-title");
 const listTitle = document.getElementById("list-title");
+const taskCounter = document.getElementById("task-counter");
 const modalDelete = document.getElementById("modal-delete");
 const btnY = document.getElementById("btn-y");
 const btnN = document.getElementById("btn-n");
@@ -54,6 +55,7 @@ newTask.addEventListener("keydown", (evento) => {
 
 //função de Renderização
 function renderTasks() {
+  taskCounter.textContent = `Total: ${tasks.length}`;
   //limpa a lista atual na tela para não duplicar itens
   listTask.innerHTML = "";
   //percorre cada tarefa do array
