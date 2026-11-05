@@ -123,10 +123,23 @@ function renderTasks() {
 
 btnY.addEventListener("click", () => {
   if (indexParaApagar !== null) {
-    tasks.splice(indexParaApagar, 1);
-    saveTasks();
-    renderTasks();
-    modalDelete.close(); // Fecha o popup
+    
+    // 1. Encontra a tag <li> exata no HTML
+    const itemVisual = listTask.children[indexParaApagar];
+    
+    // 2. Adiciona a classe que faz o item deslizar (que criámos no CSS)
+    itemVisual.classList.add("item-apagado");
+    
+    // 3. Fecha o modal imediatamente
+    modalDelete.close();
+
+    // 4. Espera 400ms para apagar os dados reais
+    setTimeout(() => {
+      tasks.splice(indexParaApagar, 1); // Apaga APENAS UMA VEZ aqui dentro
+      saveTasks();
+      renderTasks();
+      indexParaApagar = null;
+    }, 400);
   }
 });
 

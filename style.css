@@ -318,3 +318,24 @@ input {
   outline: none;
   margin-bottom: 1rem;
 }
+
+@keyframes surgirSuave {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+#list-tarefas li {
+  animation: surgirSuave 0.4s ease forwards;
+}
+
+.item-apagado {
+  opacity: 0 !important;
+  transform: translateX(50px) !important; /* Desliza para a direita enquanto some */
+  transition: all 0.4s ease-in-out; /* Define o tempo que a transição vai durar */
+}
