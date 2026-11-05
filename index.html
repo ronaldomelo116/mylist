@@ -17,8 +17,13 @@
   <meta property="og:title" content="Minha Lista de Tarefas" />
   <meta property="og:description" content="Crie listas personalizadas e gerencie seus afazeres." />
   <meta property="og:image" content="link-de-uma-foto-do-seu-projeto.png" />
-
+  <link rel="icon" type="image/png" href="./img/favicon.png">
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
@@ -28,27 +33,35 @@
 
   <main>
 
-      <section class="section-title">
-        <h2>Adicionar nova lista</h2>
-        <label for="input-title">nome da lista</label>
-        <input type="text" id="input-title" name="name-list" placeholder="Digite o nome da sua lista..." />
-      </section>
+    <section class="section-title">
+      <h2>Adicionar nova lista</h2>
+      <label for="input-title">nome da lista</label>
+      <input type="text" id="input-title" name="name-list" placeholder="Digite o nome da sua lista..." />
+    </section>
 
-      <section class="input-group">
-        <label for="nova-tarefa">crie sua lista</label>
-        <input type="text" id="nova-tarefa" name="tarefa" required placeholder="Ex: Adicionar nome ou número" />
-        <button type="button" id="button-add">Adicionar</button>
-      </section>
+    <section class="input-group">
+      <label for="nova-tarefa">crie sua lista</label>
+      <input type="text" id="nova-tarefa" name="tarefa" required placeholder="Ex: Adicionar nome ou número" />
+      <button type="button" id="button-add">Adicionar</button>
+    </section>
 
-      <section class="my-list">
-        <div class="container-list">
-          <h2 id="list-title">Minha Lista</h2>
-          <ul id="list-tarefas">
-            <!-- Os itens (li) entrarão aqui -->
-          </ul>
-        </div>
-      </section>
+    <section class="my-list">
+      <div class="container-list">
+        <h2 id="list-title">Minha Lista</h2>
+        <ul id="list-tarefas">
+          <!-- Os itens (li) entrarão aqui -->
+        </ul>
+      </div>
+    </section>
   </main>
+
+  <dialog id="modal-delete">
+    <p>Deseja excluir: <strong id="item-nome-modal"></strong>?</p>
+    <div class="modal-buttons">
+      <button type="button" id="btn-n" class="btn-cancel">Não</button>
+      <button type="button" id="btn-y" class="btn-confirm">Sim</button>
+    </div>
+  </dialog>
 
   <script src="script.js"></script>
 </body>

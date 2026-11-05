@@ -2,7 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+:root {
+  --color-buttonAdd: #0056B3;
+  --color-lateralLine: #ff9101;
+  --color-buttonRemove: #ff6301;
+  --color-buttonRemove2: #ff3c01;
 }
 
 html {
@@ -101,7 +108,7 @@ input {
 #button-add {
   padding: 0.75rem;
   margin: 10px 0;
-  background-color: #0056B3;
+  background-color: var(--color-buttonAdd);
   border-radius: 20px;
   border: none;
   color: #ffff;
@@ -116,7 +123,7 @@ input {
 }
 
 #button-add:active {
-  background-color: #0056B3;
+  background-color: var(--color-buttonAdd);
   transform: scale(0.95);
 }
 
@@ -137,7 +144,7 @@ input {
   width: 100%;
   margin-bottom: 10px;
   border-bottom: 1px solid #E0E0E0;
-  border-left: 2px solid #FF8080;
+  border-left: 2px solid var(--color-lateralLine);
   padding: 0.75rem 0.5rem;
   padding-left: 15px;
   font-size: 1.1rem;
@@ -145,7 +152,7 @@ input {
 }
 
 .btn-del {
-  background-color: #FF4D4D;
+  background-color: var(--color-buttonRemove);
   color: #ffff;
   border: none;
   border-radius: 50%;
@@ -163,10 +170,76 @@ input {
 }
 
 .btn-del:hover {
-  background-color: #FF1A1A;
+  background-color: var(--color-buttonRemove2);
   transform: scale(1.1);
 }
 
 .btn-del:active {
   transform: scale(0.95);
+}
+
+#modal-delete {
+  border: nome;
+  border-radius: 12px;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  text-align: center;
+}
+
+#modal-delete p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+#modal-delete::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn-cancel {
+  color: #fff;
+  background-color: #6c757d;
+  font-size: 16px;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+    transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.btn-cancel:hover {
+  background-color: #5a6368;
+  transform: scale(1.1);
+}
+
+.btn-confirm {
+  color: #fff;
+  background-color: #ff4d4d;
+  font-size: 16px;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+.btn-confirm:hover {
+  background-color: #ff1a1a;
+  transform: scale(1.1);
+}
+
+#item-nome-modal {
+  color: #0056B3; 
+  word-break: break-word;
 }
