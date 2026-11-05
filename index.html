@@ -1,56 +1,45 @@
 <!doctype html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- SEO Básico (Para buscadores como o Google) -->
-    <title>Minha Lista de Tarefas</title>
-    <meta
-      name="description"
-      content="Um lista virtual para você organizar suas tarefas diárias de forma simples e rápida."
-    />
-    <meta name="author" content="Seu Nome" />
-    <meta name="robots" content="index, follow" />
 
-    <!-- Open Graph (Para quando você compartilhar o link no WhatsApp, Telegram, LinkedIn) -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Minha Lista de Tarefas" />
-    <meta
-      property="og:description"
-      content="Crie listas personalizadas e gerencie seus afazeres."
-    />
-    <meta property="og:image" content="link-de-uma-foto-do-seu-projeto.png" />
-    
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header>
-      <h1>Minha lista</h1>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- SEO Básico (Para buscadores como o Google) -->
+  <title>Minha Lista de Tarefas</title>
+  <meta name="description"
+    content="Um lista virtual para você organizar suas tarefas diárias de forma simples e rápida." />
+  <meta name="author" content="Seu Nome" />
+  <meta name="robots" content="index, follow" />
 
-    <main>
-      <section>
+  <!-- Open Graph (Para quando você compartilhar o link no WhatsApp, Telegram, LinkedIn) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Minha Lista de Tarefas" />
+  <meta property="og:description" content="Crie listas personalizadas e gerencie seus afazeres." />
+  <meta property="og:image" content="link-de-uma-foto-do-seu-projeto.png" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <h1>Minha lista</h1>
+  </header>
+
+  <main>
+
+      <section class="section-title">
         <h2>Adicionar nova lista</h2>
-        <form id="form-tarefa">
-          <label for="input-title">nome da lista</label>
-          <input
-            type="text"
-            id="input-title"
-            name="name-list"
-            placeholder="Digite o nome da sua lista..."
-          />
-          <label for="nova-tarefa">crie sua lista</label>
-          <input
-            type="text"
-            id="nova-tarefa"
-            name="tarefa"
-            required
-            placeholder="Ex: Adicionar nome ou número"
-          />
-          <button type="button" id="button-add">Adicionar</button>
-        </form>
+        <label for="input-title">nome da lista</label>
+        <input type="text" id="input-title" name="name-list" placeholder="Digite o nome da sua lista..." />
       </section>
+
+      <section class="input-group">
+        <label for="nova-tarefa">crie sua lista</label>
+        <input type="text" id="nova-tarefa" name="tarefa" required placeholder="Ex: Adicionar nome ou número" />
+        <button type="button" id="button-add">Adicionar</button>
+      </section>
+
       <section class="my-list">
         <div class="container-list">
           <h2 id="list-title">Minha Lista</h2>
@@ -59,8 +48,9 @@
           </ul>
         </div>
       </section>
-    </main>
+  </main>
 
-    <script src="script.js"></script>
-  </body>
+  <script src="script.js"></script>
+</body>
+
 </html>

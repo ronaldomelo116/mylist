@@ -5,6 +5,10 @@
   font-family: sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -32,11 +36,34 @@ header h1 {
   font-size: 1.5rem;
 }
 
+.section-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.input-group {
+  position: sticky;
+  top: 0;
+  background-color: #ffffff; 
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 10px 0;
+  
+}
+
+.input-group label {
+  margin: 20px 0 10px 0;
+}
+
 form {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin-bottom: 2rem;
+  /*   margin-bottom: 2rem; */
 }
 
 .my-list {
@@ -71,8 +98,9 @@ input {
   text-align: center;
 }
 
-button {
+#button-add {
   padding: 0.75rem;
+  margin: 10px 0;
   background-color: #0056B3;
   border-radius: 20px;
   border: none;
@@ -83,11 +111,11 @@ button {
   transition: all 0.3s ease-in-out;
 }
 
-button:hover {
+#button-add:hover {
   background-color: #333;
 }
 
-button:active {
+#button-add:active {
   background-color: #0056B3;
   transform: scale(0.95);
 }
@@ -97,6 +125,9 @@ button:active {
   padding: 0;
   margin: 15px 0 0 0;
   width: 100%;
+/*   max-height: 250px;
+  overflow-y: auto; */
+  padding-right: 5px;
 }
 
 #list-tarefas li {
