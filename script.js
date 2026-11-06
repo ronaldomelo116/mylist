@@ -1,4 +1,3 @@
-
 // Variáveis para os elementos do DOM
 const buttonAdd = document.getElementById("button-add");
 const newTask = document.getElementById("nova-tarefa");
@@ -20,6 +19,7 @@ const btnSaveEdit = document.getElementById("btn-save-edit");
 // Variáveis de controle
 let indexToDelete = null;
 let indexForEditing = null;
+let dragStartIndex = null;
 // Recupera as tarefas do localStorage ou inicializa como um array vazio
 let tasks = JSON.parse(localStorage.getItem("my_tasks")) || [];
 
@@ -31,7 +31,7 @@ function saveTasks() {
 // Atualiza o título da lista e salva no localStorage
 inputTitle.addEventListener("input", () => {
   const title = inputTitle.value;
-  
+
   const textToRecord = title.trim();// Remove espaços em branco no início e no fim
 
   listTitle.textContent = textToRecord || "Minha Lista";
@@ -84,7 +84,6 @@ newTask.addEventListener("keydown", (evento) => {
 //função de Renderização
 function renderTasks() {
 
-
   taskCounter.textContent = `Total: ${tasks.length}`;
   //limpa a lista atual na tela para não duplicar itens
   listTask.innerHTML = "";
@@ -93,6 +92,27 @@ function renderTasks() {
 
     const newLi = document.createElement("li");
     newLi.textContent = taskText + " ";
+
+    //ativa o recurso de arrastar e soltar para cada item da lista
+    newLi.setAttribute("draggable", true);
+
+    newLi.addEventListener("dragstart", () => {
+      dragStartIndex = index;
+      newLi.classList.add("dragging");
+    });
+
+    newLi.addEventListener("dragover", (evento) => {
+      evento.preventDefault();
+    });
+
+    newLi.addEventListener("drop", () => {
+      const dragEndIndex = index;
+      const itemMoved = tasks.splice(dragStartIndex, 1)[0];
+
+      tasks.splice(dragEndIndex, 0, itemMoved);
+      saveTasks();
+      renderTasks();
+    });
 
     const divButtons = document.createElement("div");
     divButtons.classList.add("div-buttons");
@@ -133,13 +153,13 @@ function renderTasks() {
 // Função para apagar a tarefa selecionada
 btnY.addEventListener("click", () => {
   if (indexToDelete !== null) {
-    
+
     // 1. Encontra a tag <li> exata no HTML
     const itemVisual = listTask.children[indexToDelete];
-    
+
     // 2. Adiciona a classe que faz o item deslizar (que criámos no CSS)
     itemVisual.classList.add("item-apagado");
-    
+
     // 3. Fecha o modal imediatamente
     modalDelete.close();
 
