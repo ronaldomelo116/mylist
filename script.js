@@ -1,5 +1,4 @@
-// Expressão regular para validar caracteres permitidos
-const SaveRule = /[^a-zA-Z0-9À-ÿ\s]/g;
+
 // Variáveis para os elementos do DOM
 const buttonAdd = document.getElementById("button-add");
 const newTask = document.getElementById("nova-tarefa");
@@ -33,10 +32,7 @@ function saveTasks() {
 inputTitle.addEventListener("input", () => {
   const title = inputTitle.value;
   
-  const cleanText = title.replace(SaveRule, ""); // Remove caracteres inválidos
-  inputTitle.value = cleanText; 
-  
-  const textToRecord = cleanText.trim();// Atualiza o input com o texto limpo
+  const textToRecord = title.trim();// Remove espaços em branco no início e no fim
 
   listTitle.textContent = textToRecord || "Minha Lista";
   localStorage.setItem("title_list", textToRecord); // Salva o título
