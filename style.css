@@ -96,7 +96,6 @@ form {
 
 }
 
-
 #btn-copy {
   position: absolute;
   top: 15px;
@@ -344,7 +343,6 @@ input {
   background-color: #e9ecef;
   transform: scale(0.98);
 }
-
 .item-apagado {
   opacity: 0 !important;
   transform: translateX(50px) !important; /* Desliza para a direita enquanto some */
