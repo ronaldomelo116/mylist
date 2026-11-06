@@ -1,3 +1,6 @@
+// Expressão regular para validar caracteres permitidos
+const SaveRule = /[^a-zA-Z0-9À-ÿ\s]/g;
+// Variáveis para os elementos do DOM
 const buttonAdd = document.getElementById("button-add");
 const newTask = document.getElementById("nova-tarefa");
 const listTask = document.getElementById("list-tarefas");
@@ -15,21 +18,31 @@ const modalEdit = document.getElementById("modal-edit");
 const inputEditTask = document.getElementById("input-edit-task");
 const btnCancelEdit = document.getElementById("btn-cancel-edit");
 const btnSaveEdit = document.getElementById("btn-save-edit");
-
-let indexParaApagar = null;
-let indexParaEditar = null;
+// Variáveis de controle
+let indexToDelete = null;
+let indexForEditing = null;
+// Recupera as tarefas do localStorage ou inicializa como um array vazio
 let tasks = JSON.parse(localStorage.getItem("my_tasks")) || [];
 
+// Função para salvar as tarefas no localStorage
 function saveTasks() {
   localStorage.setItem("my_tasks", JSON.stringify(tasks));
 };
 
+// Atualiza o título da lista e salva no localStorage
 inputTitle.addEventListener("input", () => {
-  const title = inputTitle.value.trim();
-  listTitle.textContent = title || "Minha Lista";
-  localStorage.setItem("title_list", title); // Salva o título
+  const title = inputTitle.value;
+  
+  const cleanText = title.replace(SaveRule, ""); // Remove caracteres inválidos
+  inputTitle.value = cleanText; 
+  
+  const textToRecord = cleanText.trim();// Atualiza o input com o texto limpo
+
+  listTitle.textContent = textToRecord || "Minha Lista";
+  localStorage.setItem("title_list", textToRecord); // Salva o título
 });
 
+// Recupera o título salvo do localStorage ao carregar a página
 const titleSave = localStorage.getItem("title_list");
 if (titleSave) {
   inputTitle.value = titleSave;
@@ -42,14 +55,14 @@ function addTask() {
 
   if (textInput !== "") {
 
-    if (indexParaEditar === null) {
+    if (indexForEditing === null) {
 
       tasks.push(textInput);
     } else {
 
-      tasks[indexParaEditar] = textInput;
+      tasks[indexForEditing] = textInput;
 
-      indexParaEditar = null;
+      indexForEditing = null;
       buttonAdd.textContent = "Adicionar";
     }
 
@@ -95,7 +108,7 @@ function renderTasks() {
     buttonDel.title = "Excluir item";
 
     buttonDel.addEventListener("click", () => {
-      indexParaApagar = index;
+      indexToDelete = index;
       itemNomeModal.textContent = `"${taskText}"`;
       modalDelete.showModal();
     });
@@ -107,7 +120,7 @@ function renderTasks() {
     buttonEdit.title = "Editar item";
 
     buttonEdit.addEventListener("click", () => {
-      indexParaEditar = index;
+      indexForEditing = index;
       inputEditTask.value = taskText;
       modalEdit.showModal();
     });
@@ -121,11 +134,12 @@ function renderTasks() {
   });
 };
 
+// Função para apagar a tarefa selecionada
 btnY.addEventListener("click", () => {
-  if (indexParaApagar !== null) {
+  if (indexToDelete !== null) {
     
     // 1. Encontra a tag <li> exata no HTML
-    const itemVisual = listTask.children[indexParaApagar];
+    const itemVisual = listTask.children[indexToDelete];
     
     // 2. Adiciona a classe que faz o item deslizar (que criámos no CSS)
     itemVisual.classList.add("item-apagado");
@@ -135,10 +149,10 @@ btnY.addEventListener("click", () => {
 
     // 4. Espera 400ms para apagar os dados reais
     setTimeout(() => {
-      tasks.splice(indexParaApagar, 1); // Apaga APENAS UMA VEZ aqui dentro
+      tasks.splice(indexToDelete, 1); // Apaga APENAS UMA VEZ aqui dentro
       saveTasks();
       renderTasks();
-      indexParaApagar = null;
+      indexToDelete = null;
     }, 400);
   }
 });
@@ -163,17 +177,17 @@ btnCopy.addEventListener("click", () => {
 
 btnCancelEdit.addEventListener("click", () => {
   modalEdit.close(); // Fecha o popup sem fazer nada
-  indexParaEditar = null; // Limpa o índice de edição
+  indexForEditing = null; // Limpa o índice de edição
 });
 
 btnSaveEdit.addEventListener("click", () => {
   const editedText = inputEditTask.value.trim();
-  if (editedText !== "" && indexParaEditar !== null) {
-    tasks[indexParaEditar] = editedText;
+  if (editedText !== "" && indexForEditing !== null) {
+    tasks[indexForEditing] = editedText;
     saveTasks();
     renderTasks();
     modalEdit.close(); // Fecha o popup após salvar
-    indexParaEditar = null; // Limpa o índice de edição
+    indexForEditing = null; // Limpa o índice de edição
   } else {
     alert("O campo de edição não pode estar vazio.");
   }
