@@ -32,6 +32,10 @@ const btnInfo = document.getElementById("btn-info");
 const modalInfo = document.getElementById("modal-info");
 const btnCloseInfo = document.getElementById("btn-close-info");
 
+// Variáveis para o tema
+const btnTheme = document.getElementById("btn-theme");
+const body = document.body;
+
 // Variáveis de controle
 let indexToDelete = null;
 let indexForEditing = null;
@@ -244,20 +248,38 @@ btnCloseInfo.addEventListener("click", () => {
   modalInfo.close();
 });
 
+btnTheme.addEventListener("click", () => {
+  body.classList.toggle("dark-mode");
+
+  if (body.classList.contains("dark-mode")) {
+    btnTheme.innerHTML = `<i class="bi bi-sun-fill"></i>`;
+    localStorage.setItem("theme", "dark");
+  } else {
+    btnTheme.innerHTML = `<i class="bi bi-moon-fill"></i>`;
+    localStorage.setItem("theme", "light");
+  }
+});
+
+const themeSave = localStorage.getItem("theme");
+if (themeSave === "dark") {
+  body.classList.add("dark-mode");
+  btnTheme.innerHTML = `<i class="bi bi-sun-fill"></i>`;
+}
+
 // Função para fechar o modal se clicar fora dele
 function closeIfClickOutside(evento, modalElement) {
 
-  const dimensions = modalElement.getBoundingClientRect();
+    const dimensions = modalElement.getBoundingClientRect();
 
-  if (
-    evento.clientX < dimensions.left ||
-    evento.clientX > dimensions.right ||
-    evento.clientY < dimensions.top ||
-    evento.clientY > dimensions.bottom
-  ) {
-    modalElement.close();
+    if (
+      evento.clientX < dimensions.left ||
+      evento.clientX > dimensions.right ||
+      evento.clientY < dimensions.top ||
+      evento.clientY > dimensions.bottom
+    ) {
+      modalElement.close();
+    }
   }
-}
 
 modalInfo.addEventListener("click", (evento) => closeIfClickOutside(evento, modalInfo));
 modalEdit.addEventListener("click", (evento) => closeIfClickOutside(evento, modalEdit));
