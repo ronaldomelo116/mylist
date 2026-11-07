@@ -126,7 +126,7 @@ function renderTasks() {
 
     const divButtons = document.createElement("div");
     divButtons.classList.add("div-buttons");
-
+    divButtons.style.display = "flex";
     const buttonDel = document.createElement("button");
     buttonDel.innerHTML = `<i class="bi bi-trash-fill"></i>`;
     buttonDel.classList.add("btn-del");

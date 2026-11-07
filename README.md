@@ -1,23 +1,28 @@
-# 📝 Minha Lista de Tarefas (Coletta)
+# 📝 Anota Lista | Minha Lista
 
-Uma aplicação web completa, moderna, rápida e intuitiva para criação, priorização e gerenciamento de tarefas diárias. Desenvolvida em JavaScript puro (Vanilla), conta com persistência local, interface responsiva, modais nativos, animações fluidas, reordenação via *Drag and Drop* e uma central de ajuda semântica e acessível.
+Uma aplicação web completa, moderna, rápida e intuitiva para criação, priorização e gerenciamento de tarefas diárias. Desenvolvida em JavaScript puro (Vanilla), conta com identidade visual própria, alternância entre tema claro e escuro (Dark Mode), persistência local, interface responsiva, modais nativos, animações fluidas, reordenação via *Drag and Drop* e uma central de ajuda semântica e acessível.
 
 ---
 
 ## 🚀 Sobre o Projeto
 
-O **Minha Lista** foi projetado para elevar a produtividade pessoal através de uma experiência de usuário (UX) fluida e refinada. Seguindo os princípios de arquitetura orientada a dados (*State-Driven UI*), boas práticas semânticas do HTML5 e design moderno com CSS nativo, a aplicação reúne os principais recursos dos melhores gerenciadores de tarefas do mercado em um código leve e sem dependências pesadas.
+O **Anota Lista** foi projetado para elevar a produtividade pessoal através de uma experiência de usuário (UX) fluida, visualmente agradável e refinada. Seguindo os princípios de arquitetura orientada a dados (*State-Driven UI*), boas práticas semânticas do HTML5 e design moderno com CSS nativo, a aplicação reúne os principais recursos dos melhores gerenciadores de tarefas do mercado em um código leve, modular e sem dependências externas pesadas.
 
 ---
 
 ## ✨ Funcionalidades Principais
+
+- 🌓 **Tema Claro e Escuro (Dark & Light Mode)**:
+  - Alternância de tema com um único clique no botão do cabeçalho (<i class="bi bi-moon-fill"></i> / <i class="bi bi-sun-fill"></i>).
+  - Paleta em tons escuros refinada (`#121212`, `#1e1e1e`), confortável para ambientes com pouca luz.
+  - Persistência automática da preferência do usuário no `localStorage` sob a chave `"theme"`.
 
 - 🖐️ **Reordenação por Arrastar e Soltar (*Drag and Drop*)**:
   - Reorganize e repriorize suas tarefas intuitivamente clicando, segurando e arrastando (`draggable`).
   - Feedback visual imediato durante o arraste (`.dragging`) e salvamento automático da nova ordem.
 
 - 💾 **Persistência Completa no Navegador (`localStorage`)**:
-  - Salva automaticamente as tarefas e o título personalizado da sua lista.
+  - Salva automaticamente as tarefas, o tema selecionado e o título personalizado da sua lista.
   - Pode recarregar a página (<kbd>F5</kbd>) ou fechar o navegador sem perder nenhum dado.
 
 - ✏️ **Edição Completa (Tarefas e Título)**:
@@ -49,30 +54,30 @@ O **Minha Lista** foi projetado para elevar a produtividade pessoal através de 
 - 📌 **Barra de Adição Fixa (*Sticky*)**:
   - O campo de adicionar e o botão travam no topo da tela durante a rolagem de listas longas.
 
-- 🎨 **Design Moderno, Responsivo e Modular**:
+- 🎨 **Identidade Visual & Design Responsivo**:
+  - Logotipo oficial em vetor SVG (`img/logo.svg`) e favicons personalizados.
   - Paleta de cores gerenciada via variáveis CSS (`:root`).
   - Tipografia limpa com **Google Fonts (Roboto)**.
   - Ícones vetoriais modernos via **Bootstrap Icons**.
-  - Favicon personalizado incluído (`img/favicon.png`).
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
 - **HTML5**:
-  - Marcação semântica e acessível (`<dialog>`, `<header>`, `<main>`, `<section>`, `<dl>`, `<ul>`, `<kbd>`);
+  - Marcação semântica e acessível (`<dialog>`, `<header>`, `<main>`, `<section>`, `<ul>`, `<li>`, `<kbd>`);
   - Atributos ARIA (`aria-hidden="true"`) e microdados (`itemprop="author"`);
   - Meta tags completas para SEO e Open Graph (redes sociais).
 - **CSS3**:
   - Flexbox e alinhamento responsivo;
-  - Variáveis nativas (`:root`);
+  - Variáveis nativas (`:root`) e classes dedicadas para Dark Mode (`body.dark-mode`);
   - Posicionamento `sticky` e pseudo-elemento `::backdrop` com desfoque (`backdrop-filter: blur()`);
   - Animações com `@keyframes` e transições de clique tátil.
 - **JavaScript (ES6+)**:
   - Arquitetura orientada a estado (*State-Driven*);
   - API nativa de **HTML5 Drag and Drop**;
   - API de Área de Transferência (`navigator.clipboard`);
-  - Manipulação de `localStorage` (`JSON.stringify` / `JSON.parse`);
+  - Alternância e persistência de temas (`localStorage`);
   - Detecção geométrica de clique fora do modal (`getBoundingClientRect`).
 - **Recursos Externos**:
   - [Bootstrap Icons](https://icons.getbootstrap.com/) (CDN);
@@ -83,12 +88,14 @@ O **Minha Lista** foi projetado para elevar a produtividade pessoal através de 
 ## 📁 Estrutura de Arquivos
 
 ```text
-coletta/
+Anota Lista/
 ├── img/
-│   └── favicon.png    # Ícone da aba do navegador
+│   ├── favicon.png    # Ícone da aba do navegador
+│   ├── favicon2.png   # Variação do favicon
+│   └── logo.svg       # Logotipo oficial em vetor
 ├── index.html         # Marcação principal, formulários, lista e múltiplos modais
-├── style.css          # Estilização visual, variáveis CSS, animações e responsividade
-├── script.js          # Lógica da aplicação, Drag & Drop, modais, eventos e LocalStorage
+├── style.css          # Estilização visual, tema escuro, variáveis CSS e animações
+├── script.js          # Lógica da aplicação, tema, Drag & Drop, modais e LocalStorage
 └── README.md          # Documentação detalhada do projeto
 ```
 
@@ -100,12 +107,12 @@ A aplicação é puramente estática e não exige instalação de pacotes ou ser
 
 1. **Clone ou baixe o repositório:**
    ```bash
-   git clone https://github.com/seu-usuario/coletta.git
+   git clone https://github.com/seu-usuario/anota-lista.git
    ```
 
 2. **Acesse a pasta do projeto:**
    ```bash
-   cd coletta
+   cd Anota Lista
    ```
 
 3. **Abra no seu navegador:**
@@ -116,7 +123,9 @@ A aplicação é puramente estática e não exige instalação de pacotes ou ser
 
 ## 💡 Próximas Melhorias (Roadmap)
 
-- [x] Persistência total de tarefas e título com `localStorage`.
+- [x] Persistência total de tarefas, tema e título com `localStorage`.
+- [x] Alternância entre tema claro e tema escuro (Dark Mode) com ícone dinâmico.
+- [x] Identidade visual personalizada com logotipo em SVG.
 - [x] Reordenação interativa de itens com **Drag and Drop**.
 - [x] Edição de tarefas individuais e do título da lista com modais dedicados.
 - [x] Central de ajuda e dicas de usabilidade semântica (`modal-info`).
@@ -126,8 +135,8 @@ A aplicação é puramente estática e não exige instalação de pacotes ou ser
 - [x] Botão para copiar lista formatada para a área de transferência (`Clipboard API`).
 - [x] Contador dinâmico de tarefas em tempo real.
 - [ ] Opção de marcar tarefas como concluídas (checkbox com texto riscado).
-- [ ] Alternância entre tema claro e tema escuro (Dark Mode).
 - [ ] Filtro de busca para pesquisar tarefas na lista.
+- [ ] Filtro por status (todas, ativas, concluídas).
 
 ---
 
