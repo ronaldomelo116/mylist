@@ -27,6 +27,11 @@ const inputEditTask = document.getElementById("input-edit-task");
 const btnCancelEdit = document.getElementById("btn-cancel-edit");
 const btnSaveEdit = document.getElementById("btn-save-edit");
 
+//Variáveis para o modal de informações
+const btnInfo = document.getElementById("btn-info");
+const modalInfo = document.getElementById("modal-info");
+const btnCloseInfo = document.getElementById("btn-close-info");
+
 // Variáveis de controle
 let indexToDelete = null;
 let indexForEditing = null;
@@ -229,6 +234,35 @@ btnSaveTitle.addEventListener("click", () => {
     alert("O titulo da lista não pode esta vazio.");
   }
 });
+
+// Função para o modal de informações
+btnInfo.addEventListener("click", () => {
+  modalInfo.showModal();
+});
+
+btnCloseInfo.addEventListener("click", () => {
+  modalInfo.close();
+});
+
+// Função para fechar o modal se clicar fora dele
+function closeIfClickOutside(evento, modalElement) {
+
+  const dimensions = modalElement.getBoundingClientRect();
+
+  if (
+    evento.clientX < dimensions.left ||
+    evento.clientX > dimensions.right ||
+    evento.clientY < dimensions.top ||
+    evento.clientY > dimensions.bottom
+  ) {
+    modalElement.close();
+  }
+}
+
+modalInfo.addEventListener("click", (evento) => closeIfClickOutside(evento, modalInfo));
+modalEdit.addEventListener("click", (evento) => closeIfClickOutside(evento, modalEdit));
+modalDelete.addEventListener("click", (evento) => closeIfClickOutside(evento, modalDelete));
+modalEditTitle.addEventListener("click", (evento) => closeIfClickOutside(evento, modalEditTitle));
 
 // Renderiza as tarefas ao carregar a página
 

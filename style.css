@@ -63,18 +63,27 @@ header h1 {
   flex-direction: column;
   gap: 0.5rem;
   padding: 10px 0;
-
 }
 
 .input-group label {
   margin: 20px 0 10px 0;
 }
 
+.info-group {
+  position: relative;
+}
+
+.btn-info {
+  position: absolute;
+  top: 0;
+  right: 15px;
+
+}
+
 form {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  /*   margin-bottom: 2rem; */
 }
 
 .my-list {
@@ -93,7 +102,8 @@ form {
   width: 100%;
 }
 
-#btn-copy {
+#btn-copy, 
+.btn-info {
   font-size: 1.2rem;
   background: none;
   border: none;
@@ -102,8 +112,9 @@ form {
   transition: color 0.3s ease;
 }
 
-#btn-copy:hover {
-  color: #333;
+#btn-copy:hover,
+.btn-info:hover {
+  color: #0a0a0a;
 }
 
 
@@ -256,7 +267,8 @@ input {
 
 #modal-delete,
 #modal-edit,
-#modal-edit-title {
+#modal-edit-title,
+#modal-info {
   border: none;
   border-radius: 12px;
   padding: 1.5rem;
@@ -277,7 +289,8 @@ input {
 
 #modal-delete::backdrop,
 #modal-edit::backdrop,
-#modal-edit-title::backdrop {
+#modal-edit-title::backdrop,
+#modal-info::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(2px);
 }
@@ -367,5 +380,62 @@ input {
   opacity: 0 !important;
   transform: translateX(50px) !important; /* Desliza para a direita enquanto some */
   transition: all 0.4s ease-in-out; /* Define o tempo que a transição vai durar */
+}
+
+#modal-info {
+  max-width: 360px;
+  text-align: left; 
+}
+
+#modal-info h3 {
+  text-align: center;
+  color: var(--color-buttonAdd);
+  margin-bottom: 0.5rem;
+}
+
+.info-desc {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1.2rem;
+}
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #444;
+  line-height: 1.4;
+}
+
+.info-item i {
+  color: var(--color-lateralLine);
+  font-size: 1.1rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.info-footer {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #888;
+}
+
+#modal-info kbd {
+  background-color: #eee;
+  border-radius: 4px;
+  padding: 2px 5px;
+  font-size: 0.8rem;
+  border: 1px solid #ccc;
 }
 

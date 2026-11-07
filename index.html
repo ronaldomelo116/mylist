@@ -34,6 +34,12 @@
   <main>
 
     <section class="input-group">
+      <div class="info-group">
+        <button type="button" id="btn-info" class="btn-info" title="informações">
+          <i class="bi bi-info-circle"></i>
+        </button>
+      </div>
+
       <label for="nova-tarefa">crie sua lista</label>
       <input type="text" id="nova-tarefa" name="tarefa" required placeholder="Digite uma nova tarefa..." />
       <button type="button" id="button-add">Adicionar</button>
@@ -90,6 +96,46 @@
     <div class="modal-buttons">
       <button type="button" id="btn-cancel-title" class="btn-cancel">Cancelar</button>
       <button type="button" id="btn-save-title" class="btn-confirm">Salvar</button>
+    </div>
+  </dialog>
+
+  <dialog id="modal-info">
+    <h3><i class="bi bi-info-circle-fill"></i> Como usar o MyList</h3>
+    <p class="info-desc">Organize sua rotina diária de forma simples e produtiva.</p>
+
+    <ul class="info-list">
+      <li class="info-item">
+        <i class="bi bi-arrows-move" aria-hidden="true"></i>
+        <span><strong>Reordenar:</strong> Arraste e solte para priorizar suas tarefas.</span>
+      </li>
+
+      <li class="info-item">
+        <i class="bi bi-keyboard" aria-hidden="true"></i>
+        <span><strong>Atalho:</strong> Aperte <kbd>Enter</kbd> para cadastrar rapidamente.</span>
+      </li>
+
+      <li class="info-item">
+        <i class="bi bi-pencil-fill" aria-hidden="true"></i>
+        <span><strong>Editar:</strong> Altere o texto de tarefas ou o título da lista a qualquer momento.</span>
+      </li>
+
+      <li class="info-item">
+        <i class="bi bi-clipboard-check" aria-hidden="true"></i>
+        <span><strong>Compartilhar:</strong> Copie sua lista pronta para envio com apenas um clique.</span>
+      </li>
+
+      <li class="info-item">
+        <i class="bi bi-shield-lock-fill" aria-hidden="true"></i>
+        <span><strong>Privacidade:</strong> Tudo é salvo localmente no seu dispositivo.</span>
+      </li>
+    </ul>
+
+    <footer class="info-footer">
+      <small>Versão 1.2 • Desenvolvido por <span itemprop="author">Ronaldo Melo</span></small>
+    </footer>
+
+    <div class="modal-buttons">
+      <button type="button" id="btn-close-info" class="btn-cancel">Entendi</button>
     </div>
   </dialog>
 
