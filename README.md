@@ -1,63 +1,68 @@
 # 📝 Anota Lista | Minha Lista
 
-Uma aplicação web completa, moderna, rápida e intuitiva para criação, priorização e gerenciamento de tarefas diárias. Desenvolvida em JavaScript puro (Vanilla), conta com identidade visual própria, alternância entre tema claro e escuro (Dark Mode), persistência local, interface responsiva, modais nativos, animações fluidas, reordenação via *Drag and Drop* e uma central de ajuda semântica e acessível.
+Uma aplicação web ágil, intuitiva e moderna para criação, priorização e organização de afazeres diários. Desenvolvida em JavaScript puro (Vanilla), conta com identidade visual própria, alternância entre esquemas claro e escuro (Dark Mode), captura inteligente de texto via câmera com OCR (Tesseract.js), persistência no navegador, interface responsiva, caixas de diálogo nativas, animações fluidas, reordenação via *Drag and Drop* e uma central de ajuda acessível.
 
 ---
 
 ## 🚀 Sobre o Projeto
 
-O **Anota Lista** foi projetado para elevar a produtividade pessoal através de uma experiência de usuário (UX) fluida, visualmente agradável e refinada. Seguindo os princípios de arquitetura orientada a dados (*State-Driven UI*), boas práticas semânticas do HTML5 e design moderno com CSS nativo, a aplicação reúne os principais recursos dos melhores gerenciadores de tarefas do mercado em um código leve, modular e sem dependências externas pesadas.
+O **Anota Lista** foi concebido para simplificar a produtividade pessoal através de uma experiência de uso leve, agradável e refinada. Adotando os princípios de arquitetura orientada a dados (*State-Driven UI*), semântica do HTML5 e estilização com CSS puro, a ferramenta integra inteligência visual para digitalização de notas físicas e entrega recursos modernos em um código enxuto, modular e livre de servidores backend.
 
 ---
 
 ## ✨ Funcionalidades Principais
 
-- 🌓 **Tema Claro e Escuro (Dark & Light Mode)**:
-  - Alternância de tema com um único clique no botão do cabeçalho (<i class="bi bi-moon-fill"></i> / <i class="bi bi-sun-fill"></i>).
-  - Paleta em tons escuros refinada (`#121212`, `#1e1e1e`), confortável para ambientes com pouca luz.
-  - Persistência automática da preferência do usuário no `localStorage` sob a chave `"theme"`.
+- 📷 **Captura de Texto via Câmera com OCR (Tesseract.js)**:
+  - Digitalização instantânea de anotações manuscritas, livros ou embalagens diretamente pela câmera do celular ou upload de arquivo.
+  - Reconhecimento Óptico de Caracteres executado no próprio navegador (*client-side*) com modelo treinado para o idioma Português (`'por'`).
+  - Indicador de status em tempo real (`"Lendo imagem, aguarde..."`) e envio automático do texto lido para o campo de digitação, permitindo ajustes antes da inclusão.
+
+- 🌓 **Modos Claro e Escuro (Light & Dark Theme)**:
+  - Alternância instantânea acionada no topo da página (<i class="bi bi-moon-fill"></i> / <i class="bi bi-sun-fill"></i>).
+  - Paleta noturna balanceada (`#121212`, `#1e1e1e`), confortável para a visão em ambientes de baixa luminosidade.
+  - Gravação automática da escolha do usuário no `localStorage` sob a chave `"theme"`.
 
 - 🖐️ **Reordenação por Arrastar e Soltar (*Drag and Drop*)**:
-  - Reorganize e repriorize suas tarefas intuitivamente clicando, segurando e arrastando (`draggable`).
-  - Feedback visual imediato durante o arraste (`.dragging`) e salvamento automático da nova ordem.
+  - Repriorize seus afazeres com facilidade clicando, segurando e movendo (`draggable`).
+  - Resposta visual imediata durante o movimento (`.dragging`) e salvamento automático da nova disposição.
 
-- 💾 **Persistência Completa no Navegador (`localStorage`)**:
-  - Salva automaticamente as tarefas, o tema selecionado e o título personalizado da sua lista.
-  - Pode recarregar a página (<kbd>F5</kbd>) ou fechar o navegador sem perder nenhum dado.
+- 💾 **Armazenamento Local Contínuo (`localStorage`)**:
+  - Preserva os registros, o estilo visual e o cabeçalho personalizado diretamente no navegador.
+  - Liberdade para atualizar a página (<kbd>F5</kbd>) ou fechar a janela sem risco de perder informações.
 
-- ✏️ **Edição Completa (Tarefas e Título)**:
-  - **Edição de Tarefas**: Modal dedicado (`<dialog id="modal-edit">`) com input pré-carregado para ajustar qualquer afazer rapidamente.
-  - **Edição do Título da Lista**: Modal exclusivo (`<dialog id="modal-edit-title">`) com botão dedicado (<i class="bi bi-pencil-fill"></i>) para renomear sua lista a qualquer momento.
+- ✏️ **Modificação de Conteúdo (Itens e Título)**:
+  - **Registros Individuais**: Janela interativa (`<dialog id="modal-edit">`) com campo pré-preenchido para alterar o texto com agilidade.
+  - **Nome da Lista**: Interface rápida (`<dialog id="modal-edit-title">`) acionada pelo ícone de lápis (<i class="bi bi-pencil-fill"></i>) para renomear o projeto a qualquer momento.
 
-- ℹ️ **Central de Ajuda e Informações Semântica (`modal-info`)**:
-  - Modal explicativo acessado pelo botão de informações (<i class="bi bi-info-circle"></i>).
+- ℹ️ **Central de Ajuda e Instruções (`modal-info`)**:
+  - Painel explicativo aberto pelo botão de informações (<i class="bi bi-info-circle"></i>).
   - Estrutura semântica (`<ul>`, `<li>`, `<kbd>`) com acessibilidade W3C (`aria-hidden` em ícones) e dados de autoria com microdados Schema.org (`itemprop="author"`).
-  - Orientações claras sobre atalhos, privacidade e recursos do sistema.
+  - Orientações claras sobre atalhos de teclado, privacidade e funcionamento do sistema.
 
-- 🛡️ **Exclusão Segura com Confirmação Dinâmica**:
-  - Previne exclusões acidentais através do `<dialog id="modal-delete">`.
-  - Exibe dinamicamente o nome exato do item selecionado para exclusão.
-  - **Saída Animada**: Ao confirmar a exclusão, o item desliza suavemente para a direita com efeito *fade-out* antes de ser removido da tela.
+- 🛡️ **Remoção Segura com Confirmação em Tempo Real**:
+  - Evita perdas por engano utilizando o componente `<dialog id="modal-delete">`.
+  - Apresenta na tela o nome exato do registro prestes a ser apagado.
+  - **Saída Animada**: Ao autorizar o descarte, a linha desliza suavemente para a direita em *fade-out* antes de sumir do documento.
 
 - 🚪 **Fechamento Inteligente de Janelas (*Click Outside* & <kbd>Esc</kbd>)**:
-  - Todos os modais fecham automaticamente se o usuário clicar no fundo escuro (*backdrop*) ou pressionar a tecla <kbd>Esc</kbd>.
+  - Todas as caixas de diálogo fecham sozinhas quando o usuário clica no fundo escurecido (*backdrop*) ou pressionar a tecla <kbd>Esc</kbd>.
 
-- 📋 **Copiar Lista Formatada (Clipboard API)**:
-  - Copie com um clique toda a lista com título e marcadores organizados (`- item`), pronta para ser compartilhada no WhatsApp, Telegram, e-mail ou notas.
+- 📋 **Exportação Rápida (Clipboard API)**:
+  - Transfira o conteúdo para a área de transferência com um só clique, já estruturado com cabeçalho e marcadores (`- item`), pronto para envio via WhatsApp, Telegram ou e-mail.
 
-- 🔢 **Contador Dinâmico de Tarefas**:
-  - Indicador em tempo real do volume total de afazeres cadastrados (`Total: X`).
+- 🔢 **Marcador de Volume**:
+  - Indicador numérico atualizado a cada alteração (`Total: X`).
 
-- 🎬 **Animações Fluidas (CSS Keyframes)**:
-  - Efeito suave de entrada lateral com transparência (`@keyframes surgirSuave`) para novos itens.
+- 🎬 **Transições Fluidas (CSS Keyframes)**:
+  - Entrada suave de novos elementos surgindo pela lateral com efeito de transparência (`@keyframes surgirSuave`).
 
-- 📌 **Barra de Adição Fixa (*Sticky*)**:
-  - O campo de adicionar e o botão travam no topo da tela durante a rolagem de listas longas.
+- 📌 **Cabeçalho de Entrada Fixo (*Sticky*)**:
+  - O campo de digitação e o botão de inclusão permanecem acessíveis no topo da tela durante a rolagem de registros extensos.
 
-- 🎨 **Identidade Visual & Design Responsivo**:
-  - Logotipo oficial em vetor SVG (`img/logo.svg`) e favicons personalizados.
-  - Paleta de cores gerenciada via variáveis CSS (`:root`).
-  - Tipografia limpa com **Google Fonts (Roboto)**.
+- 🎨 **Identidade Visual & Responsividade**:
+  - Logotipo oficial em vetor SVG (`img/logo.svg`) e favicons customizados.
+  - Cores centralizadas em variáveis CSS (`:root`).
+  - Tipografia nítida com **Google Fonts (Roboto)**.
   - Ícones vetoriais modernos via **Bootstrap Icons**.
 
 ---
@@ -67,35 +72,39 @@ O **Anota Lista** foi projetado para elevar a produtividade pessoal através de 
 - **HTML5**:
   - Marcação semântica e acessível (`<dialog>`, `<header>`, `<main>`, `<section>`, `<ul>`, `<li>`, `<kbd>`);
   - Atributos ARIA (`aria-hidden="true"`) e microdados (`itemprop="author"`);
-  - Meta tags completas para SEO e Open Graph (redes sociais).
+  - Atributos para captura de câmera mobile (`capture="environment"`, `accept="image/*"`);
+  - Metadados completos para motores de busca e pré-visualização em redes sociais (Open Graph).
 - **CSS3**:
-  - Flexbox e alinhamento responsivo;
-  - Variáveis nativas (`:root`) e classes dedicadas para Dark Mode (`body.dark-mode`);
-  - Posicionamento `sticky` e pseudo-elemento `::backdrop` com desfoque (`backdrop-filter: blur()`);
-  - Animações com `@keyframes` e transições de clique tátil.
+  - Alinhamento responsivo com Flexbox;
+  - Variáveis nativas (`:root`) e classes dedicadas para o modo escuro (`body.dark-mode`);
+  - Posicionamento `sticky` e pseudo-elemento `::backdrop` com desfoque de fundo (`backdrop-filter: blur()`);
+  - Botão flutuante estilizado para a câmera dentro do input (`.input-wrapper`);
+  - Animações com `@keyframes` e microinterações de clique tátil.
 - **JavaScript (ES6+)**:
   - Arquitetura orientada a estado (*State-Driven*);
   - API nativa de **HTML5 Drag and Drop**;
-  - API de Área de Transferência (`navigator.clipboard`);
-  - Alternância e persistência de temas (`localStorage`);
-  - Detecção geométrica de clique fora do modal (`getBoundingClientRect`).
-- **Recursos Externos**:
-  - [Bootstrap Icons](https://icons.getbootstrap.com/) (CDN);
-  - [Google Fonts](https://fonts.google.com/) (Roboto).
+  - Processamento assíncrono com `async/await` e tratamento com `try/catch/finally`;
+  - Integração com a área de transferência (`navigator.clipboard`);
+  - Gerenciamento e serialização no `localStorage`;
+  - Detecção geométrica de cliques externos aos modais (`getBoundingClientRect`).
+- **Bibliotecas & Recursos Externos**:
+  - [Tesseract.js v5](https://tesseract.projectnaptha.com/) (Motor de OCR em JavaScript e WebAssembly);
+  - [Bootstrap Icons](https://icons.getbootstrap.com/) via CDN;
+  - [Google Fonts](https://fonts.google.com/) (Família Roboto).
 
 ---
 
 ## 📁 Estrutura de Arquivos
 
 ```text
-Anota Lista/
+anota-lista/
 ├── img/
 │   ├── favicon.png    # Ícone da aba do navegador
-│   ├── favicon2.png   # Variação do favicon
+│   ├── favicon2.png   # Variação alternativa do favicon
 │   └── logo.svg       # Logotipo oficial em vetor
-├── index.html         # Marcação principal, formulários, lista e múltiplos modais
-├── style.css          # Estilização visual, tema escuro, variáveis CSS e animações
-├── script.js          # Lógica da aplicação, tema, Drag & Drop, modais e LocalStorage
+├── index.html         # Marcação principal, formulários, leitor de câmera e caixas de diálogo
+├── style.css          # Estilização visual, modo escuro, variáveis CSS e animações
+├── script.js          # Lógica da aplicação, integração OCR (Tesseract), Drag & Drop e LocalStorage
 └── README.md          # Documentação detalhada do projeto
 ```
 
@@ -103,47 +112,48 @@ Anota Lista/
 
 ## 💻 Como Executar o Projeto
 
-A aplicação é puramente estática e não exige instalação de pacotes ou servidores backend:
+A aplicação roda inteiramente no navegador e não exige a instalação de pacotes locais ou servidores de backend:
 
 1. **Clone ou baixe o repositório:**
    ```bash
    git clone https://github.com/seu-usuario/anota-lista.git
    ```
 
-2. **Acesse a pasta do projeto:**
+2. **Acesse o diretório do projeto:**
    ```bash
-   cd Anota Lista
+   cd anota-lista
    ```
 
 3. **Abra no seu navegador:**
    - Dê um duplo clique no arquivo [index.html](file:///c:/Users/win10/Documents/PROJETOS/mylist/index.html), **ou**
-   - No VS Code, utilize a extensão **Live Server** (clique com botão direito em `index.html` > *Open with Live Server*).
+   - No VS Code, utilize a extensão **Live Server** (clique com o botão direito em `index.html` > *Open with Live Server*).
 
 ---
 
 ## 💡 Próximas Melhorias (Roadmap)
 
-- [x] Persistência total de tarefas, tema e título com `localStorage`.
-- [x] Alternância entre tema claro e tema escuro (Dark Mode) com ícone dinâmico.
-- [x] Identidade visual personalizada com logotipo em SVG.
-- [x] Reordenação interativa de itens com **Drag and Drop**.
-- [x] Edição de tarefas individuais e do título da lista com modais dedicados.
-- [x] Central de ajuda e dicas de usabilidade semântica (`modal-info`).
-- [x] Fechamento inteligente de modais ao clicar no fundo escuro (*backdrop*).
-- [x] Modal de confirmação seguro com nome dinâmico da tarefa antes de excluir.
-- [x] Animações e microinterações de entrada (`keyframes`) e saída suave.
-- [x] Botão para copiar lista formatada para a área de transferência (`Clipboard API`).
-- [x] Contador dinâmico de tarefas em tempo real.
-- [ ] Opção de marcar tarefas como concluídas (checkbox com texto riscado).
-- [ ] Filtro de busca para pesquisar tarefas na lista.
-- [ ] Filtro por status (todas, ativas, concluídas).
+- [x] Armazenamento contínuo dos dados, configurações de tema e cabeçalho no `localStorage`.
+- [x] Alternância entre esquemas claro e escuro (Dark Mode) com botão reativo.
+- [x] Captura e extração de texto via câmera com OCR (**Tesseract.js** em Português).
+- [x] Identidade visual própria com logotipo vetorial em SVG.
+- [x] Reordenação interativa via arrastar e soltar (**Drag and Drop**).
+- [x] Ajuste pontual de itens e renomeação do cabeçalho com caixas de diálogo próprias.
+- [x] Central informativa sobre recursos, atalhos e privacidade (`modal-info`).
+- [x] Fechamento ágil de popups ao tocar no fundo sombreado (*backdrop*).
+- [x] Janela de confirmação preventiva exibindo o nome exato do item selecionado.
+- [x] Transições e microinterações de entrada (`keyframes`) e saída fluida.
+- [x] Cópia formatada para a área de transferência com um clique (`Clipboard API`).
+- [x] Marcador numérico indicando o total de registros ativos.
+- [ ] Marcação de afazeres concluídos (efeito tachado via checkbox).
+- [ ] Campo de pesquisa para filtrar itens em tempo real.
+- [ ] Visualização segmentada por estado (todas, pendentes e finalizadas).
 
 ---
 
 ## 👨‍💻 Autor
 
 Desenvolvido por **Ronaldo Melo**  
-Versão: `1.2.0`
+Versão: `1.2.2`
 
 ---
 

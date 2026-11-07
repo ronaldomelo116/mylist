@@ -36,6 +36,10 @@ const btnCloseInfo = document.getElementById("btn-close-info");
 const btnTheme = document.getElementById("btn-theme");
 const body = document.body;
 
+// Variáveis para o OCR
+const btnCamera = document.getElementById("btn-camera");
+const cameraInput = document.getElementById("camera-input");
+
 // Variáveis de controle
 let indexToDelete = null;
 let indexForEditing = null;
@@ -300,7 +304,44 @@ modalEdit.addEventListener("click", (evento) => closeIfClickOutside(evento, moda
 modalDelete.addEventListener("click", (evento) => closeIfClickOutside(evento, modalDelete));
 modalEditTitle.addEventListener("click", (evento) => closeIfClickOutside(evento, modalEditTitle));
 
-// Renderiza as tarefas ao carregar a página
+btnCamera.addEventListener("click", () => {
+  cameraInput.click();
+});
 
+// O evento 'change' ocorre quando a foto é confirmada pelo utilizador
+cameraInput.addEventListener("change", async (evento) => {
+  // Pega o ficheiro da imagem que está dentro do input
+  const photoFile = evento.target.files[0];
+  
+  // Se o utilizador tirou mesmo a foto (não cancelou)
+  if (photoFile) {
+    // Dá um feedback visual para o utilizador saber que não travou
+    newTask.placeholder = "Lendo imagem, aguarde...";
+    
+    // O bloco try/catch é uma boa prática de segurança para lidar com erros sem quebrar a aplicação
+    try {
+      // Chama o Tesseract (que colocamos no HTML) para ler a foto. O 'por' é para o dicionário em Português.
+      const result = await Tesseract.recognize(photoFile, 'por');
+      
+      // O Tesseract devolve o texto. O replace(/\n/g, ' ') troca quebras de linha por espaços normais.
+      const extractedText = result.data.text.trim().replace(/\n/g, ' ');
+      
+      // Coloca o texto lido com sucesso direto dentro do input para o utilizador editar ou salvar
+      newTask.value = extractedText;
+      
+    } catch (erro) {
+      // Se a imagem for muito ruim ou houver falha, avisa o utilizador de forma amigável
+      console.error(erro);
+      alert("Não foi possível ler o texto. Tente aproximar a câmera ou melhorar a iluminação.");
+    } finally {
+      // O finally sempre executa no final, dando erro ou não.
+      // Ele devolve o texto original do input e limpa a memória da câmera.
+      newTask.placeholder = "Digite uma nova tarefa...";
+      cameraInput.value = ""; 
+    }
+  }
+});
+
+// Renderiza as tarefas ao carregar a página
 renderTasks();
 

@@ -24,6 +24,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 </head>
 
 <body>
@@ -44,7 +45,19 @@
       </div>
 
       <label for="nova-tarefa">Crie sua lista</label>
-      <input type="text" id="nova-tarefa" name="tarefa" required placeholder="Digite uma nova tarefa..." />
+
+      <!-- Crie este "pacote" em volta do seu input atual -->
+      <div class="input-wrapper">
+        <input type="text" id="nova-tarefa" name="tarefa" required placeholder="Digite uma nova tarefa..." />
+
+        <!-- O nosso botão da câmera -->
+        <button type="button" id="btn-camera" class="btn-camera" title="Capturar texto com câmera">
+          <i class="bi bi-camera-fill"></i>
+        </button>
+      </div>
+
+      <!-- O input nativo do HTML que chama a câmera (Fica escondido!) -->
+      <input type="file" id="camera-input" accept="image/*" capture="environment" style="display: none;" />
       <button type="button" id="button-add">Adicionar</button>
     </section>
 
@@ -134,7 +147,7 @@
     </ul>
 
     <footer class="info-footer">
-      <small>Versão 1.2 • Desenvolvido por <span itemprop="author">Ronaldo Melo</span></small>
+      <small>Versão 1.2.2 • Desenvolvido por <span itemprop="author">Ronaldo Melo</span></small>
     </footer>
 
     <div class="modal-buttons">

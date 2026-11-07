@@ -528,3 +528,28 @@ body.dark-mode
  {
   color: #e0e0e0;
 }
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+/* O seu input precisa de um padding extra à direita para o texto não ficar por baixo da câmera */
+#nova-tarefa {
+  width: 100%;
+  padding-right: 40px; 
+}
+
+/* A câmera fica flutuando à direita, dentro do wrapper */
+.btn-camera {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%); /* Centraliza verticalmente de forma perfeita */
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--color-buttonAdd);
+  cursor: pointer;
+}
