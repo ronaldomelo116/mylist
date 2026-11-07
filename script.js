@@ -217,6 +217,13 @@ btnSaveEdit.addEventListener("click", () => {
   }
 });
 
+inputEditTask.addEventListener("keydown", (evento) => {
+  if(evento.key == "Enter") {
+    evento.preventDefault();
+    btnSaveEdit.click();
+  }
+});
+
 // Funções para editar o título da lista
 btnEditTitle.addEventListener("click", () => {
   inputEditTitle.value = listTitle.textContent;
@@ -236,6 +243,13 @@ btnSaveTitle.addEventListener("click", () => {
     modalEditTitle.close();
   } else {
     alert("O titulo da lista não pode esta vazio.");
+  }
+});
+
+inputEditTitle.addEventListener("keydown", (evento) => {
+  if(evento.key == "Enter") {
+    evento.preventDefault();
+    btnSaveTitle.click();
   }
 });
 
