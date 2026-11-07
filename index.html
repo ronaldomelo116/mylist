@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <!-- SEO Básico (Para buscadores como o Google) -->
-  <title>Minha Lista de Tarefas</title>
+  <title>Coletta | Minha Lista</title>
   <meta name="description"
     content="Um lista virtual para você organizar suas tarefas diárias de forma simples e rápida." />
   <meta name="author" content="Seu Nome" />
@@ -27,8 +27,9 @@
 </head>
 
 <body>
-  <header>
-    <h1>Minha lista</h1>
+  <header class="header">
+    <img src="./img/logo.svg" alt="Logo do Coletta" class="logo"/>
+    <h1>Coletta</h1>
   </header>
 
   <main>
@@ -40,7 +41,7 @@
         </button>
       </div>
 
-      <label for="nova-tarefa">crie sua lista</label>
+      <label for="nova-tarefa">Crie sua lista</label>
       <input type="text" id="nova-tarefa" name="tarefa" required placeholder="Digite uma nova tarefa..." />
       <button type="button" id="button-add">Adicionar</button>
     </section>
@@ -100,7 +101,7 @@
   </dialog>
 
   <dialog id="modal-info">
-    <h3><i class="bi bi-info-circle-fill"></i> Como usar o MyList</h3>
+    <h3><i class="bi bi-info-circle-fill"></i> Como usar o Coletta</h3>
     <p class="info-desc">Organize sua rotina diária de forma simples e produtiva.</p>
 
     <ul class="info-list">

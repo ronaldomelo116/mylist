@@ -1,4 +1,4 @@
-# 📝 Minha Lista de Tarefas (MyList)
+# 📝 Minha Lista de Tarefas (Coletta)
 
 Uma aplicação web completa, moderna, rápida e intuitiva para criação, priorização e gerenciamento de tarefas diárias. Desenvolvida em JavaScript puro (Vanilla), conta com persistência local, interface responsiva, modais nativos, animações fluidas, reordenação via *Drag and Drop* e uma central de ajuda semântica e acessível.
 
@@ -83,7 +83,7 @@ O **Minha Lista** foi projetado para elevar a produtividade pessoal através de 
 ## 📁 Estrutura de Arquivos
 
 ```text
-mylist/
+coletta/
 ├── img/
 │   └── favicon.png    # Ícone da aba do navegador
 ├── index.html         # Marcação principal, formulários, lista e múltiplos modais
@@ -100,12 +100,12 @@ A aplicação é puramente estática e não exige instalação de pacotes ou ser
 
 1. **Clone ou baixe o repositório:**
    ```bash
-   git clone https://github.com/seu-usuario/mylist.git
+   git clone https://github.com/seu-usuario/coletta.git
    ```
 
 2. **Acesse a pasta do projeto:**
    ```bash
-   cd mylist
+   cd coletta
    ```
 
 3. **Abra no seu navegador:**
