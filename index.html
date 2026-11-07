@@ -33,22 +33,28 @@
 
   <main>
 
-    <section class="section-title">
-      <h2>Adicionar nova lista</h2>
-      <label for="input-title">nome da lista</label>
-      <input type="text" id="input-title" name="name-list" placeholder="Digite o nome da sua lista..." />
-    </section>
-
     <section class="input-group">
       <label for="nova-tarefa">crie sua lista</label>
       <input type="text" id="nova-tarefa" name="tarefa" required placeholder="Digite uma nova tarefa..." />
       <button type="button" id="button-add">Adicionar</button>
     </section>
 
-    <section class="section-title">
-      <button type="button" id="btn-copy" title="Copiar lista"><i class="bi bi-copy"></i></button>
-      <h2 id="list-title">Minha Lista</h2>
-      <span id="task-counter"></span>
+    <section class="section-title header-title">
+
+      <div class="title-group">
+        <button type="button" id="btn-edit-title" class="btn-edit" title="Editar titulo">
+          <i class="bi bi-pencil-fill"></i>
+        </button>
+        <h2 id="list-title">Minha Lista</h2>
+
+      </div>
+      <div class="task-counter-group">
+        <span id="task-counter"></span>
+        <button type="button" id="btn-copy" title="Copiar lista">
+          <i class="bi bi-copy"></i>
+        </button>
+      </div>
+
     </section>
 
     <section class="my-list">
@@ -75,6 +81,15 @@
     <div class="modal-buttons">
       <button type="button" id="btn-cancel-edit" class="btn-cancel">Cancelar</button>
       <button type="button" id="btn-save-edit" class="btn-confirm">Salvar</button>
+    </div>
+  </dialog>
+
+  <dialog id="modal-edit-title">
+    <p>Editar titulo</p>
+    <input type="text" id="input-edit-title" required />
+    <div class="modal-buttons">
+      <button type="button" id="btn-cancel-title" class="btn-cancel">Cancelar</button>
+      <button type="button" id="btn-save-title" class="btn-confirm">Salvar</button>
     </div>
   </dialog>
 

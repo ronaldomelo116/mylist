@@ -2,20 +2,31 @@
 const buttonAdd = document.getElementById("button-add");
 const newTask = document.getElementById("nova-tarefa");
 const listTask = document.getElementById("list-tarefas");
-const inputTitle = document.getElementById("input-title");
+
+// Variáveis para o modal de edição do título
+const btnEditTitle = document.getElementById("btn-edit-title");
+const modalEditTitle = document.getElementById("modal-edit-title");
+const inputEditTitle = document.getElementById("input-edit-title");
+const btnCancelTitle = document.getElementById("btn-cancel-title");
+const btnSaveTitle = document.getElementById("btn-save-title");
+
+// Variáveis para o título da lista e contador de tarefas
 const listTitle = document.getElementById("list-title");
 const taskCounter = document.getElementById("task-counter");
 const btnCopy = document.getElementById("btn-copy");
+
 // Variáveis para o modal de exclusão
 const modalDelete = document.getElementById("modal-delete");
 const btnY = document.getElementById("btn-y");
 const btnN = document.getElementById("btn-n");
 const itemNomeModal = document.getElementById("item-nome-modal");
+
 // Variáveis para o modal de edição
 const modalEdit = document.getElementById("modal-edit");
 const inputEditTask = document.getElementById("input-edit-task");
 const btnCancelEdit = document.getElementById("btn-cancel-edit");
 const btnSaveEdit = document.getElementById("btn-save-edit");
+
 // Variáveis de controle
 let indexToDelete = null;
 let indexForEditing = null;
@@ -28,20 +39,10 @@ function saveTasks() {
   localStorage.setItem("my_tasks", JSON.stringify(tasks));
 };
 
-// Atualiza o título da lista e salva no localStorage
-inputTitle.addEventListener("input", () => {
-  const title = inputTitle.value;
-
-  const textToRecord = title.trim();// Remove espaços em branco no início e no fim
-
-  listTitle.textContent = textToRecord || "Minha Lista";
-  localStorage.setItem("title_list", textToRecord); // Salva o título
-});
 
 // Recupera o título salvo do localStorage ao carregar a página
 const titleSave = localStorage.getItem("title_list");
 if (titleSave) {
-  inputTitle.value = titleSave;
   listTitle.textContent = titleSave;
 };
 
@@ -154,18 +155,13 @@ function renderTasks() {
 btnY.addEventListener("click", () => {
   if (indexToDelete !== null) {
 
-    // 1. Encontra a tag <li> exata no HTML
     const itemVisual = listTask.children[indexToDelete];
-
-    // 2. Adiciona a classe que faz o item deslizar (que criámos no CSS)
     itemVisual.classList.add("item-apagado");
 
-    // 3. Fecha o modal imediatamente
     modalDelete.close();
 
-    // 4. Espera 400ms para apagar os dados reais
     setTimeout(() => {
-      tasks.splice(indexToDelete, 1); // Apaga APENAS UMA VEZ aqui dentro
+      tasks.splice(indexToDelete, 1);
       saveTasks();
       renderTasks();
       indexToDelete = null;
@@ -173,10 +169,13 @@ btnY.addEventListener("click", () => {
   }
 });
 
+// Função para cancelar a exclusão da tarefa
+
 btnN.addEventListener("click", () => {
   modalDelete.close(); // Fecha o popup sem fazer nada
 });
 
+// Função para copiar a lista de tarefas para a área de transferência
 btnCopy.addEventListener("click", () => {
   let textToCopy = listTitle.textContent + "\n\n";
   tasks.forEach((tarefaAtual) => {
@@ -206,6 +205,28 @@ btnSaveEdit.addEventListener("click", () => {
     indexForEditing = null; // Limpa o índice de edição
   } else {
     alert("O campo de edição não pode estar vazio.");
+  }
+});
+
+// Funções para editar o título da lista
+btnEditTitle.addEventListener("click", () => {
+  inputEditTitle.value = listTitle.textContent;
+  modalEditTitle.showModal()
+});
+
+btnCancelTitle.addEventListener("click", () => {
+  modalEditTitle.close();
+});
+
+btnSaveTitle.addEventListener("click", () => {
+  const newTitle = inputEditTitle.value.trim();
+
+  if (newTitle !== "") {
+    listTitle.textContent = newTitle;
+    localStorage.setItem("title_list", newTitle);
+    modalEditTitle.close();
+  } else {
+    alert("O titulo da lista não pode esta vazio.");
   }
 });
 

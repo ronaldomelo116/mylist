@@ -47,8 +47,10 @@ header h1 {
 
 .section-title {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
   margin-bottom: 1rem;
 }
 
@@ -91,15 +93,7 @@ form {
   width: 100%;
 }
 
-.section-title {
-  position: relative;
-
-}
-
 #btn-copy {
-  position: absolute;
-  top: 15px;
-  right: 15px;
   font-size: 1.2rem;
   background: none;
   border: none;
@@ -112,8 +106,15 @@ form {
   color: #333;
 }
 
+
 #list-title {
-  margin-top: 20px;
+  margin-top: 0;
+  flex-grow: 1;
+  text-align: center;
+}
+
+#list-title h2 {
+  white-space: normal;
 }
 
 #task-counter {
@@ -229,17 +230,33 @@ input {
     transform 0.1s ease;
 }
 
-.btn-edit:hover {
+.btn-edit:hover, #btn-edit:hover {
   background-color: var(--color-buttonEdit2);
   transform: scale(1.1);
 }
 
-.btn-edit:active {
+.btn-edit:active, #btn-edit:active {
   transform: scale(0.95);
 }
 
+.header-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+
+.title-group, .task-counter-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
 #modal-delete,
-#modal-edit {
+#modal-edit,
+#modal-edit-title {
   border: none;
   border-radius: 12px;
   padding: 1.5rem;
@@ -250,7 +267,8 @@ input {
 }
 
 #modal-delete p,
-#modal-edit p {
+#modal-edit p,
+#modal-edit-title p {
   font-size: 1.2rem;
   font-weight: 600;
   color: #333;
@@ -258,7 +276,8 @@ input {
 }
 
 #modal-delete::backdrop,
-#modal-edit::backdrop {
+#modal-edit::backdrop,
+#modal-edit-title::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(2px);
 }
@@ -308,7 +327,8 @@ input {
   word-break: break-word;
 }
 
-#input-edit-task {
+#input-edit-task,
+#input-edit-title {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #CCC;
