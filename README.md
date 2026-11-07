@@ -1,77 +1,82 @@
 # 📝 Minha Lista de Tarefas (MyList)
 
-Uma aplicação web moderna, rápida e intuitiva para criação e gerenciamento de tarefas diárias, com persistência local, interface responsiva, modais nativos, animações fluidas e suporte a cópia de lista.
+Uma aplicação web completa, moderna, rápida e intuitiva para criação, priorização e gerenciamento de tarefas diárias. Desenvolvida em JavaScript puro (Vanilla), conta com persistência local, interface responsiva, modais nativos, animações fluidas, reordenação via *Drag and Drop* e uma central de ajuda semântica e acessível.
 
 ---
 
 ## 🚀 Sobre o Projeto
 
-O **Minha Lista** é um gerenciador de afazeres completo construído com JavaScript Vanilla, priorizando boas práticas de desenvolvimento como arquitetura orientada a estado (*State-Driven UI*), separação de responsabilidades e foco total na experiência do usuário (UX).
-
-O projeto conta com recursos avançados como edição de itens em modal, cópia da lista formatada para a área de transferência, contador de tarefas em tempo real, animações suaves de entrada/saída e exclusão segura com confirmação.
+O **Minha Lista** foi projetado para elevar a produtividade pessoal através de uma experiência de usuário (UX) fluida e refinada. Seguindo os princípios de arquitetura orientada a dados (*State-Driven UI*), boas práticas semânticas do HTML5 e design moderno com CSS nativo, a aplicação reúne os principais recursos dos melhores gerenciadores de tarefas do mercado em um código leve e sem dependências pesadas.
 
 ---
 
-## ✨ Funcionalidades
+## ✨ Funcionalidades Principais
 
-- 💾 **Persistência Total no Navegador (`localStorage`)**:
-  - Salva automaticamente as tarefas e o título personalizado da lista.
-  - Os dados continuam intactos mesmo após recarregar (<kbd>F5</kbd>) ou fechar o navegador.
+- 🖐️ **Reordenação por Arrastar e Soltar (*Drag and Drop*)**:
+  - Reorganize e repriorize suas tarefas intuitivamente clicando, segurando e arrastando (`draggable`).
+  - Feedback visual imediato durante o arraste (`.dragging`) e salvamento automático da nova ordem.
 
-- ✏️ **Edição de Tarefas**:
-  - Modal interativo (`<dialog id="modal-edit">`) para editar qualquer tarefa existente.
-  - Campo pré-preenchido com o texto atual da tarefa, permitindo alterações rápidas sem recriar o item.
+- 💾 **Persistência Completa no Navegador (`localStorage`)**:
+  - Salva automaticamente as tarefas e o título personalizado da sua lista.
+  - Pode recarregar a página (<kbd>F5</kbd>) ou fechar o navegador sem perder nenhum dado.
 
-- 📋 **Copiar Lista para a Área de Transferência (Clipboard API)**:
-  - Botão dedicado para copiar toda a lista com um clique (<i class="bi bi-copy"></i>).
-  - A lista é copiada com formatação limpa (título + marcadores `- tarefa`), pronta para ser colada no WhatsApp, Telegram, e-mail ou bloco de notas.
+- ✏️ **Edição Completa (Tarefas e Título)**:
+  - **Edição de Tarefas**: Modal dedicado (`<dialog id="modal-edit">`) com input pré-carregado para ajustar qualquer afazer rapidamente.
+  - **Edição do Título da Lista**: Modal exclusivo (`<dialog id="modal-edit-title">`) com botão dedicado (<i class="bi bi-pencil-fill"></i>) para renomear sua lista a qualquer momento.
 
-- 🔢 **Contador de Tarefas em Tempo Real**:
-  - Exibição dinâmica do total de tarefas cadastradas na lista (`Total: X`).
+- ℹ️ **Central de Ajuda e Informações Semântica (`modal-info`)**:
+  - Modal explicativo acessado pelo botão de informações (<i class="bi bi-info-circle"></i>).
+  - Estrutura semântica (`<ul>`, `<li>`, `<kbd>`) com acessibilidade W3C (`aria-hidden` em ícones) e dados de autoria com microdados Schema.org (`itemprop="author"`).
+  - Orientações claras sobre atalhos, privacidade e recursos do sistema.
 
-- 🛡️ **Trava de Segurança na Exclusão (Modal Nativo)**:
-  - Previne exclusões acidentais com `<dialog id="modal-delete">`.
+- 🛡️ **Exclusão Segura com Confirmação Dinâmica**:
+  - Previne exclusões acidentais através do `<dialog id="modal-delete">`.
   - Exibe dinamicamente o nome exato do item selecionado para exclusão.
-  - Fundo escurecido com desfoque elegante (*backdrop blur*).
+  - **Saída Animada**: Ao confirmar a exclusão, o item desliza suavemente para a direita com efeito *fade-out* antes de ser removido da tela.
+
+- 🚪 **Fechamento Inteligente de Janelas (*Click Outside* & <kbd>Esc</kbd>)**:
+  - Todos os modais fecham automaticamente se o usuário clicar no fundo escuro (*backdrop*) ou pressionar a tecla <kbd>Esc</kbd>.
+
+- 📋 **Copiar Lista Formatada (Clipboard API)**:
+  - Copie com um clique toda a lista com título e marcadores organizados (`- item`), pronta para ser compartilhada no WhatsApp, Telegram, e-mail ou notas.
+
+- 🔢 **Contador Dinâmico de Tarefas**:
+  - Indicador em tempo real do volume total de afazeres cadastrados (`Total: X`).
 
 - 🎬 **Animações Fluidas (CSS Keyframes)**:
-  - **Entrada Suave**: As tarefas surgem com efeito de deslize da esquerda e fade-in (`@keyframes surgirSuave`).
-  - **Saída Animada**: Ao confirmar a exclusão, o item desliza suavemente para a direita com fade-out antes de ser removido.
+  - Efeito suave de entrada lateral com transparência (`@keyframes surgirSuave`) para novos itens.
 
 - 📌 **Barra de Adição Fixa (*Sticky*)**:
-  - O campo de adicionar e o botão travam no topo da tela durante a rolagem, permitindo adicionar novos afazeres mesmo em listas extensas sem ter que rolar de volta ao topo.
+  - O campo de adicionar e o botão travam no topo da tela durante a rolagem de listas longas.
 
-- 🏷️ **Título Dinâmico e Customizável**:
-  - Renomeie o título da lista em tempo real enquanto digita.
-
-- 🎨 **Design Moderno & Variáveis CSS**:
-  - Paleta de cores padronizada via variáveis CSS (`:root`).
+- 🎨 **Design Moderno, Responsivo e Modular**:
+  - Paleta de cores gerenciada via variáveis CSS (`:root`).
   - Tipografia limpa com **Google Fonts (Roboto)**.
-  - Ícones vetoriais modernos com **Bootstrap Icons** (lixeira, lápis de edição e cópia).
-  - Microinterações de *hover* e *active* (efeito de clique tátil).
-
-- 🌐 **Otimização SEO, Open Graph & Favicon**:
-  - Favicon personalizado (`img/favicon.png`) e meta tags configuradas para compartilhamento com pré-visualização em redes sociais.
+  - Ícones vetoriais modernos via **Bootstrap Icons**.
+  - Favicon personalizado incluído (`img/favicon.png`).
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **HTML5**: Estrutura semântica, meta tags Open Graph/SEO e uso da tag nativa `<dialog>` para múltiplos modais acessíveis.
+- **HTML5**:
+  - Marcação semântica e acessível (`<dialog>`, `<header>`, `<main>`, `<section>`, `<dl>`, `<ul>`, `<kbd>`);
+  - Atributos ARIA (`aria-hidden="true"`) e microdados (`itemprop="author"`);
+  - Meta tags completas para SEO e Open Graph (redes sociais).
 - **CSS3**:
-  - Layout com Flexbox;
-  - Variáveis de cores nativas (`:root`);
-  - Posicionamento `sticky`;
-  - Animações `@keyframes` e transições suaves de escala e opacidade;
-  - Pseudo-elemento `::backdrop` com `backdrop-filter: blur()`.
+  - Flexbox e alinhamento responsivo;
+  - Variáveis nativas (`:root`);
+  - Posicionamento `sticky` e pseudo-elemento `::backdrop` com desfoque (`backdrop-filter: blur()`);
+  - Animações com `@keyframes` e transições de clique tátil.
 - **JavaScript (ES6+)**:
-  - Arquitetura *State-Driven* (fonte única de verdade nos dados);
-  - Manipulação nativa do DOM e tratamento de eventos (`click`, `keydown`);
-  - Armazenamento local via `localStorage` com `JSON.stringify` e `JSON.parse`;
-  - Integração com a API nativa `navigator.clipboard`.
-- **Bibliotecas Externas**:
-  - [Bootstrap Icons](https://icons.getbootstrap.com/) via CDN;
-  - [Google Fonts](https://fonts.google.com/) (Família Roboto).
+  - Arquitetura orientada a estado (*State-Driven*);
+  - API nativa de **HTML5 Drag and Drop**;
+  - API de Área de Transferência (`navigator.clipboard`);
+  - Manipulação de `localStorage` (`JSON.stringify` / `JSON.parse`);
+  - Detecção geométrica de clique fora do modal (`getBoundingClientRect`).
+- **Recursos Externos**:
+  - [Bootstrap Icons](https://icons.getbootstrap.com/) (CDN);
+  - [Google Fonts](https://fonts.google.com/) (Roboto).
 
 ---
 
@@ -81,9 +86,9 @@ O projeto conta com recursos avançados como edição de itens em modal, cópia 
 mylist/
 ├── img/
 │   └── favicon.png    # Ícone da aba do navegador
-├── index.html         # Estrutura principal, formulários e modais
-├── style.css          # Estilos visuais, variáveis CSS, animações e responsividade
-├── script.js          # Lógica da aplicação, estado, LocalStorage e eventos
+├── index.html         # Marcação principal, formulários, lista e múltiplos modais
+├── style.css          # Estilização visual, variáveis CSS, animações e responsividade
+├── script.js          # Lógica da aplicação, Drag & Drop, modais, eventos e LocalStorage
 └── README.md          # Documentação detalhada do projeto
 ```
 
@@ -91,7 +96,7 @@ mylist/
 
 ## 💻 Como Executar o Projeto
 
-Por se tratar de uma aplicação front-end estática pura, você não precisa instalar nenhuma dependência ou gerenciador de pacotes:
+A aplicação é puramente estática e não exige instalação de pacotes ou servidores backend:
 
 1. **Clone ou baixe o repositório:**
    ```bash
@@ -105,26 +110,34 @@ Por se tratar de uma aplicação front-end estática pura, você não precisa in
 
 3. **Abra no seu navegador:**
    - Dê um duplo clique no arquivo [index.html](file:///c:/Users/win10/Documents/PROJETOS/mylist/index.html), **ou**
-   - No VS Code, clique com o botão direito em `index.html` e selecione **"Open with Live Server"**.
+   - No VS Code, utilize a extensão **Live Server** (clique com botão direito em `index.html` > *Open with Live Server*).
 
 ---
 
 ## 💡 Próximas Melhorias (Roadmap)
 
-- [x] Persistência de dados com `localStorage`.
-- [x] Barra de criação de tarefas fixa no topo (*sticky*).
+- [x] Persistência total de tarefas e título com `localStorage`.
+- [x] Reordenação interativa de itens com **Drag and Drop**.
+- [x] Edição de tarefas individuais e do título da lista com modais dedicados.
+- [x] Central de ajuda e dicas de usabilidade semântica (`modal-info`).
+- [x] Fechamento inteligente de modais ao clicar no fundo escuro (*backdrop*).
 - [x] Modal de confirmação seguro com nome dinâmico da tarefa antes de excluir.
-- [x] Edição de tarefas com modal dedicado (`modal-edit`).
-- [x] Botão para copiar a lista formatada para a área de transferência (`Clipboard API`).
+- [x] Animações e microinterações de entrada (`keyframes`) e saída suave.
+- [x] Botão para copiar lista formatada para a área de transferência (`Clipboard API`).
 - [x] Contador dinâmico de tarefas em tempo real.
-- [x] Animações e microinterações de entrada (`keyframes`) e saída fluida.
-- [ ] Opção de marcar tarefas como concluídas (checkbox com efeito riscado).
+- [ ] Opção de marcar tarefas como concluídas (checkbox com texto riscado).
 - [ ] Alternância entre tema claro e tema escuro (Dark Mode).
-- [ ] Campo de busca para filtrar tarefas na lista.
-- [ ] Arrastar e soltar para reordenar tarefas (*Drag and Drop*).
+- [ ] Filtro de busca para pesquisar tarefas na lista.
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido por **Ronaldo Melo**  
+Versão: `1.2.0`
 
 ---
 
 ## 📄 Licença
 
-Este projeto é open-source sob a licença [MIT](https://opensource.org/licenses/MIT). Sinta-se à vontade para utilizar, sugerir melhorias e compartilhar!
+Este projeto é de código aberto sob a licença [MIT](https://opensource.org/licenses/MIT). Sinta-se livre para usar, estudar e compartilhar!
