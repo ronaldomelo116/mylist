@@ -500,9 +500,9 @@ body.dark-mode #list-tarefas li {
   border-bottom: 1px solid #333;
 }
 
-body.dark-mode #modal-delete, 
-body.dark-mode #modal-edit, 
-body.dark-mode #modal-edit-title, 
+body.dark-mode #modal-delete,
+body.dark-mode #modal-edit,
+body.dark-mode #modal-edit-title,
 body.dark-mode #modal-info {
   background-color: #1e1e1e;
 }
@@ -521,11 +521,8 @@ body.dark-mode kbd {
   color: #0a0a0a;
 }
 
-body.dark-mode 
-#btn-copy:hover,
-body.dark-mode
-.btn-info:hover
- {
+body.dark-mode #btn-copy:hover,
+body.dark-mode .btn-info:hover {
   color: #e0e0e0;
 }
 
@@ -535,21 +532,60 @@ body.dark-mode
   width: 100%;
 }
 
-/* O seu input precisa de um padding extra à direita para o texto não ficar por baixo da câmera */
 #nova-tarefa {
   width: 100%;
-  padding-right: 40px; 
+  padding-right: 40px;
 }
 
-/* A câmera fica flutuando à direita, dentro do wrapper */
+
 .btn-camera {
   position: absolute;
   right: 10px;
   top: 50%;
-  transform: translateY(-50%); /* Centraliza verticalmente de forma perfeita */
+  transform: translateY(-50%);
   background: none;
   border: none;
   font-size: 1.2rem;
   color: var(--color-buttonAdd);
   cursor: pointer;
+}
+
+.loading-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+
+.loading-overlay.active {
+  display: flex;
+}
+
+.loading-overlay p {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: var(--color-buttonAdd);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

@@ -40,6 +40,9 @@ const body = document.body;
 const btnCamera = document.getElementById("btn-camera");
 const cameraInput = document.getElementById("camera-input");
 
+// Variável para o overlay de carregamento
+const loadingOverlay = document.getElementById("loading-overlay");
+
 // Variáveis de controle
 let indexToDelete = null;
 let indexForEditing = null;
@@ -222,7 +225,7 @@ btnSaveEdit.addEventListener("click", () => {
 });
 
 inputEditTask.addEventListener("keydown", (evento) => {
-  if(evento.key == "Enter") {
+  if (evento.key == "Enter") {
     evento.preventDefault();
     btnSaveEdit.click();
   }
@@ -251,7 +254,7 @@ btnSaveTitle.addEventListener("click", () => {
 });
 
 inputEditTitle.addEventListener("keydown", (evento) => {
-  if(evento.key == "Enter") {
+  if (evento.key == "Enter") {
     evento.preventDefault();
     btnSaveTitle.click();
   }
@@ -287,17 +290,17 @@ if (themeSave === "dark") {
 // Função para fechar o modal se clicar fora dele
 function closeIfClickOutside(evento, modalElement) {
 
-    const dimensions = modalElement.getBoundingClientRect();
+  const dimensions = modalElement.getBoundingClientRect();
 
-    if (
-      evento.clientX < dimensions.left ||
-      evento.clientX > dimensions.right ||
-      evento.clientY < dimensions.top ||
-      evento.clientY > dimensions.bottom
-    ) {
-      modalElement.close();
-    }
+  if (
+    evento.clientX < dimensions.left ||
+    evento.clientX > dimensions.right ||
+    evento.clientY < dimensions.top ||
+    evento.clientY > dimensions.bottom
+  ) {
+    modalElement.close();
   }
+}
 
 modalInfo.addEventListener("click", (evento) => closeIfClickOutside(evento, modalInfo));
 modalEdit.addEventListener("click", (evento) => closeIfClickOutside(evento, modalEdit));
@@ -312,23 +315,24 @@ btnCamera.addEventListener("click", () => {
 cameraInput.addEventListener("change", async (evento) => {
   // Pega o ficheiro da imagem que está dentro do input
   const photoFile = evento.target.files[0];
-  
+
   // Se o utilizador tirou mesmo a foto (não cancelou)
   if (photoFile) {
     // Dá um feedback visual para o utilizador saber que não travou
     newTask.placeholder = "Lendo imagem, aguarde...";
-    
+
+      loadingOverlay.classList.add("active");
     // O bloco try/catch é uma boa prática de segurança para lidar com erros sem quebrar a aplicação
     try {
       // Chama o Tesseract (que colocamos no HTML) para ler a foto. O 'por' é para o dicionário em Português.
       const result = await Tesseract.recognize(photoFile, 'por');
-      
+
       // O Tesseract devolve o texto. O replace(/\n/g, ' ') troca quebras de linha por espaços normais.
       const extractedText = result.data.text.trim().replace(/\n/g, ' ');
-      
+
       // Coloca o texto lido com sucesso direto dentro do input para o utilizador editar ou salvar
       newTask.value = extractedText;
-      
+
     } catch (erro) {
       // Se a imagem for muito ruim ou houver falha, avisa o utilizador de forma amigável
       console.error(erro);
@@ -337,9 +341,13 @@ cameraInput.addEventListener("change", async (evento) => {
       // O finally sempre executa no final, dando erro ou não.
       // Ele devolve o texto original do input e limpa a memória da câmera.
       newTask.placeholder = "Digite uma nova tarefa...";
-      cameraInput.value = ""; 
+      cameraInput.value = "";
+      loadingOverlay.classList.remove("active");
     }
   }
+
+  
+
 });
 
 // Renderiza as tarefas ao carregar a página
