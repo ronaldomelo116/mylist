@@ -1,16 +1,21 @@
 # 📝 Anota Lista | Minha Lista
 
-Uma aplicação web ágil, intuitiva e moderna para criação, priorização e organização de afazeres diários. Desenvolvida em JavaScript puro (Vanilla), conta com identidade visual própria, alternância entre esquemas claro e escuro (Dark Mode), captura inteligente de texto via câmera com OCR (Tesseract.js), compartilhamento de listas via link, persistência no navegador, interface responsiva com fundos dinâmicos em SVG, caixas de diálogo nativas, animações fluidas, reordenação via *Drag and Drop* e uma central de ajuda acessível.
+Uma aplicação web ágil, intuitiva e moderna para criação, priorização e organização de afazeres diários. Desenvolvida em JavaScript puro (Vanilla), conta com suporte a **PWA instalável**, identidade visual própria, alternância entre esquemas claro e escuro (Dark Mode), captura inteligente de texto via câmera com OCR (Tesseract.js), compartilhamento de listas via link, persistência no navegador, interface responsiva com fundos dinâmicos em SVG, caixas de diálogo nativas, animações fluidas, reordenação via *Drag and Drop* e uma central de ajuda acessível.
 
 ---
 
 ## 🚀 Sobre o Projeto
 
-O **Anota Lista** foi concebido para simplificar a produtividade pessoal através de uma experiência de uso leve, agradável e refinada. Adotando os princípios de arquitetura orientada a dados (*State-Driven UI*), semântica do HTML5 e estilização moderna com CSS puro, a ferramenta integra inteligência visual para digitalização de notas físicas e compartilhamento dinâmico entre usuários em um código enxuto, modular e livre de servidores backend.
+O **Anota Lista** foi concebido para simplificar a produtividade pessoal através de uma experiência de uso leve, agradável e refinada. Adotando os princípios de arquitetura orientada a dados (*State-Driven UI*), semântica do HTML5, recursos de Progressive Web App (PWA) e estilização com CSS puro, a ferramenta integra inteligência visual para digitalização de notas físicas e compartilhamento dinâmico entre usuários em um código enxuto, modular e livre de servidores backend.
 
 ---
 
 ## ✨ Funcionalidades Principais
+
+- 📱 **Progressive Web App (PWA Instalável)**:
+  - Configuração com `manifest.json` e metatag de cor do sistema (`theme-color`).
+  - Pode ser instalado na tela de início de celulares (Android/iOS) ou no desktop (Chrome/Edge/Opera) funcionando como um aplicativo nativo em modo *standalone* (sem a barra de endereços do navegador).
+  - Ícones adaptáveis (*maskable*) e tela de carregamento (*splash screen*) configurados com a identidade visual da aplicação.
 
 - 🔗 **Compartilhamento Dinâmico de Listas via Link**:
   - Exporte sua lista completa para qualquer pessoa através de um botão dedicado (<i class="bi bi-share"></i>).
@@ -69,7 +74,8 @@ O **Anota Lista** foi concebido para simplificar a produtividade pessoal atravé
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **HTML5**:
+- **HTML5 & PWA**:
+  - **Progressive Web App**: Web App Manifest (`manifest.json`), meta tags de `theme-color` e suporte a modo `standalone`;
   - Marcação semântica e acessível (`<dialog>`, `<header>`, `<main>`, `<section>`, `<ul>`, `<li>`, `<kbd>`);
   - Atributos ARIA (`aria-hidden="true"`) e microdados (`itemprop="author"`);
   - Atributos para captura de câmera mobile (`capture="environment"`, `accept="image/*"`);
@@ -107,6 +113,7 @@ anota-lista/
 │   ├── favicon2.png           # Variação alternativa do favicon
 │   └── logo.svg               # Logotipo oficial em vetor
 ├── index.html                 # Marcação principal, formulários, leitor de câmera e caixas de diálogo
+├── manifest.json              # Configuração PWA (instalação, ícones e modo standalone)
 ├── style.css                  # Estilização visual, tema escuro, variáveis CSS e animações
 ├── script.js                  # Lógica, compartilhamento por URL, OCR (Tesseract), Drag & Drop e LocalStorage
 └── README.md                  # Documentação detalhada do projeto
@@ -140,6 +147,7 @@ A aplicação roda inteiramente no navegador e não exige a instalação de paco
 - [x] Alternância entre esquemas claro e escuro (Dark Mode) com botão reativo.
 - [x] Captura e extração de texto via câmera com OCR (**Tesseract.js** em Português).
 - [x] Compartilhamento instantâneo de listas através de URL codificada em Base64.
+- [x] Configuração de **PWA (Progressive Web App)** com `manifest.json` para instalação direta no dispositivo.
 - [x] Indicador de carregamento em tela cheia com *spinner* para OCR.
 - [x] Backgrounds vetoriais em SVG dinâmicos para desktop e mobile.
 - [x] Dica interativa inteligente para o recurso de reordenação (**Drag and Drop**).

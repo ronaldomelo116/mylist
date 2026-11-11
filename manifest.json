@@ -1,0 +1,36 @@
+{
+  "name": "Anota Lista | Gerenciador de Tarefas",
+  "short_name": "Anota Lista",
+  "description": "Crie, organize, priorize e compartilhe suas tarefas diárias com captura inteligente via câmera OCR.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F4F4F9",
+  "theme_color": "#FF6A00",
+  "orientation": "portrait-primary",
+  "lang": "pt-BR",
+  "categories": [
+    "productivity",
+    "utilities"
+  ],
+  "icons": [
+    {
+      "src": "./img/logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "./img/favicon.png",
+      "type": "image/png",
+      "sizes": "192x192 512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "./img/favicon.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ]
+}
