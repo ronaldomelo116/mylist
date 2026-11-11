@@ -54,7 +54,7 @@ body {
 main {
   background-color: var(--color-background-soft);
   width: 100%;
-  max-width: 400px;
+  max-width: 600px;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -62,7 +62,7 @@ main {
 
 .header {
   width: 100%;
-  max-width: 400px;
+  max-width: 536px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -123,12 +123,13 @@ body.dark-mode .btn-info-top {
 }
 
 body.dark-mode #modal-info {
-   color: var(--color-buttonRemove);
+  color: var(--color-buttonRemove);
 }
 
 
-body.dark-mode .info-list i, strong {
-   color: var(--color-buttonRemove);
+body.dark-mode .info-list i,
+strong {
+  color: var(--color-buttonRemove);
 }
 
 .info-item .bi {
@@ -709,6 +710,12 @@ body.dark-mode main {
 
 body.dark-mode .input-group {
   background-color: #1e1e1e;
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .container-list {
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.05);
 }
 
 body.dark-mode input {
@@ -776,6 +783,9 @@ body.dark-mode .icon-moon {
   padding-right: 40px;
 }
 
+#nova-tarefa::placeholder {
+  font-size: 1rem;
+}
 
 .loading-overlay {
   display: none;
@@ -827,5 +837,15 @@ body.dark-mode .icon-moon {
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
+  }
+
+  main {
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+  }
+
+  #nova-tarefa::placeholder {
+    font-size: 0.6rem;
   }
 }
