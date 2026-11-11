@@ -43,6 +43,12 @@ const cameraInput = document.getElementById("camera-input");
 // Variável para o overlay de carregamento
 const loadingOverlay = document.getElementById("loading-overlay");
 
+// Variável para a dica de arrastar e soltar
+const dragTip = document.getElementById("drag-tip");
+
+// Variável para o botão de compartilhamento
+const btnShare = document.getElementById("btn-share");
+
 // Variáveis de controle
 let indexToDelete = null;
 let indexForEditing = null;
@@ -54,6 +60,28 @@ let tasks = JSON.parse(localStorage.getItem("my_tasks")) || [];
 function saveTasks() {
   localStorage.setItem("my_tasks", JSON.stringify(tasks));
 };
+
+const urlParam = new URLSearchParams(window.location.search);
+const sharedData = urlParam.get("share");
+
+if (sharedData) {
+  try {
+    const decodedData = JSON.parse(atob(sharedData));
+
+    listTitle.textContent = decodedData.titulo;
+    tasks = decodedData.tarefas;
+
+    localStorage.setItem("title_list", decodedData.titulo);
+
+    window.history.replaceState({}, document.title, window.location.pathname);
+
+    alert("Lista compartilhada carregada com sucesso!");
+
+  } catch (error) {
+    console.error("Erro ao carregar a lista compartilhada:", error);
+    alert("O link da lista parece estar quebrado ou inválido.")
+  }
+}
 
 
 // Recupera o título salvo do localStorage ao carregar a página
@@ -76,7 +104,7 @@ function addTask() {
       tasks[indexForEditing] = textInput;
 
       indexForEditing = null;
-      buttonAdd.textContent = "Adicionar";
+      buttonAdd.innerHTML = '<i class="bi bi-plus-lg"></i>';
     }
 
     saveTasks();
@@ -100,6 +128,14 @@ newTask.addEventListener("keydown", (evento) => {
 
 //função de Renderização
 function renderTasks() {
+  taskCounter.textContent = `${tasks.length} ${tasks.length === 1 ? 'item' : 'itens'}`;
+
+  if (tasks.length >= 2) {
+    dragTip.classList.remove("hide-tip");
+  } else {
+    dragTip.classList.add("hide-tip");
+  }
+  listTask.innerHTML = "";
 
   taskCounter.textContent = `Total: ${tasks.length}`;
   //limpa a lista atual na tela para não duplicar itens
@@ -273,18 +309,40 @@ btnTheme.addEventListener("click", () => {
   body.classList.toggle("dark-mode");
 
   if (body.classList.contains("dark-mode")) {
-    btnTheme.innerHTML = `<i class="bi bi-sun-fill"></i>`;
     localStorage.setItem("theme", "dark");
   } else {
-    btnTheme.innerHTML = `<i class="bi bi-moon-fill"></i>`;
     localStorage.setItem("theme", "light");
+  }
+});
+
+btnShare.addEventListener("click", () => {
+  const listToShare = {
+    titulo: listTitle.textContent,
+    tarefas: tasks
+  };
+
+  try {
+    const dataAsText = JSON.stringify(listToShare);
+    const dataAsBase64 = btoa(dataAsText);
+    const linkFinal = `${window.location.origin}${window.location.pathname}?share=${dataAsBase64}`;
+
+    navigator.clipboard.writeText(linkFinal)
+      .then(() => {
+        alert("Link de compartilhamento copiado! Envie para os seus amigos.");
+      })
+      .catch(() => {
+        // Fallback caso o navegador bloqueie a cópia automática
+        prompt("Copie o link abaixo:", linkFinal);
+      });
+  } catch (error) {
+    console.error("Erro ao gerar o link:", error);
+    alert("Não foi possível gerar o link de compartilhamento.");
   }
 });
 
 const themeSave = localStorage.getItem("theme");
 if (themeSave === "dark") {
   body.classList.add("dark-mode");
-  btnTheme.innerHTML = `<i class="bi bi-sun-fill"></i>`;
 }
 
 // Função para fechar o modal se clicar fora dele
@@ -321,7 +379,7 @@ cameraInput.addEventListener("change", async (evento) => {
     // Dá um feedback visual para o utilizador saber que não travou
     newTask.placeholder = "Lendo imagem, aguarde...";
 
-      loadingOverlay.classList.add("active");
+    loadingOverlay.classList.add("active");
     // O bloco try/catch é uma boa prática de segurança para lidar com erros sem quebrar a aplicação
     try {
       // Chama o Tesseract (que colocamos no HTML) para ler a foto. O 'por' é para o dicionário em Português.
@@ -346,7 +404,7 @@ cameraInput.addEventListener("change", async (evento) => {
     }
   }
 
-  
+
 
 });
 

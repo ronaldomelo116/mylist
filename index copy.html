@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- SEO Básico (Para buscadores como o Google) -->
+  <title>Anota Lista | Minha Lista</title>
+  <meta name="description"
+    content="Um lista virtual para você organizar suas tarefas diárias de forma simples e rápida." />
+  <meta name="author" content="Seu Nome" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph (Para quando você compartilhar o link no WhatsApp, Telegram, LinkedIn) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Minha Lista de Tarefas" />
+  <meta property="og:description" content="Crie listas personalizadas e gerencie seus afazeres." />
+  <meta property="og:image" content="link-de-uma-foto-do-seu-projeto.png" />
+  <link rel="icon" type="image/png" href="./img/favicon.png">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+</head>
+
+<body>
+  <header class="header">
+    <img src="./img/logo.svg" alt="Logo do Anota Lista" class="logo" />
+    <h1>Anota Lista</h1>
+    <button type="button" id="btn-theme" class="btn-theme" title="Alternar Tema">
+      <i class="bi bi-moon-fill"></i>
+    </button>
+  </header>
+
+  <main>
+    <section class="input-group">
+      <div class="info-group">
+        <button type="button" id="btn-info" class="btn-info" title="informações">
+          <i class="bi bi-info-circle"></i>
+        </button>
+      </div>
+
+      <label for="nova-tarefa">Crie sua lista</label>
+
+      <!-- Crie este "pacote" em volta do seu input atual -->
+      <div class="input-wrapper">
+        <input type="text" id="nova-tarefa" name="tarefa" required placeholder="Digite uma nova tarefa..." />
+
+        <!-- O nosso botão da câmera -->
+        <button type="button" id="btn-camera" class="btn-camera" title="Capturar texto com câmera">
+          <i class="bi bi-camera-fill"></i>
+        </button>
+      </div>
+
+      <!-- O input nativo do HTML que chama a câmera (Fica escondido!) -->
+      <input type="file" id="camera-input" accept="image/*" capture="environment" style="display: none;" />
+      <button type="button" id="button-add">Adicionar</button>
+    </section>
+
+    <section class="section-title header-title">
+
+      <div class="title-group">
+        <button type="button" id="btn-edit-title" class="btn-edit" title="Editar titulo">
+          <i class="bi bi-pencil-fill"></i>
+        </button>
+        <h2 id="list-title">Minha Lista</h2>
+
+      </div>
+      <div class="task-counter-group">
+        <span id="task-counter"></span>
+        <button type="button" id="btn-copy" title="Copiar lista">
+          <i class="bi bi-copy"></i>
+        </button>
+      </div>
+
+    </section>
+
+    <section class="my-list">
+      <div class="container-list">
+
+        <ul id="list-tarefas">
+          <!-- Os itens (li) entrarão aqui -->
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="modal-delete">
+    <p>Deseja excluir: <strong id="item-nome-modal"></strong>?</p>
+    <div class="modal-buttons">
+      <button type="button" id="btn-n" class="btn-cancel">Não</button>
+      <button type="button" id="btn-y" class="btn-confirm">Sim</button>
+    </div>
+  </dialog>
+
+  <dialog id="modal-edit">
+    <p>Editar Item</p>
+    <input type="text" id="input-edit-task" required />
+    <div class="modal-buttons">
+      <button type="button" id="btn-cancel-edit" class="btn-cancel">Cancelar</button>
+      <button type="button" id="btn-save-edit" class="btn-confirm">Salvar</button>
+    </div>
+  </dialog>
+
+  <dialog id="modal-edit-title">
+    <p>Editar titulo</p>
+    <input type="text" id="input-edit-title" required />
+    <div class="modal-buttons">
+      <button type="button" id="btn-cancel-title" class="btn-cancel">Cancelar</button>
+      <button type="button" id="btn-save-title" class="btn-confirm">Salvar</button>
+    </div>
+  </dialog>
+
+  <dialog id="modal-info">
+    <h3><i class="bi bi-info-circle-fill"></i> Como usar o Anota Lista</h3>
+    <p class="info-desc">Organize sua rotina diária de forma simples e produtiva.</p>
+
+    <ul class="info-list">
+      <li class="info-item">
+        <i class="bi bi-arrows-move" aria-hidden="true"></i>
+        <span><strong>Reordenar:</strong> Arraste e solte para priorizar suas tarefas.</span>
+      </li>
+
+      <li class="info-item">
+        <i class="bi bi-keyboard" aria-hidden="true"></i>
+        <span><strong>Atalho:</strong> Aperte <kbd>Enter</kbd> para cadastrar rapidamente.</span>
+      </li>
+
+      <li class="info-item">
+        <i class="bi bi-pencil-fill" aria-hidden="true"></i>
+        <span><strong>Editar:</strong> Altere o texto de tarefas ou o título da lista a qualquer momento.</span>
+      </li>
+
+      <li class="info-item">
+        <i class="bi bi-clipboard-check" aria-hidden="true"></i>
+        <span><strong>Compartilhar:</strong> Copie sua lista pronta para envio com apenas um clique.</span>
+      </li>
+
+      <li class="info-item">
+        <i class="bi bi-shield-lock-fill" aria-hidden="true"></i>
+        <span><strong>Privacidade:</strong> Tudo é salvo localmente no seu dispositivo.</span>
+      </li>
+    </ul>
+
+    <footer class="info-footer">
+      <small>Versão 1.2.2 • Desenvolvido por <span itemprop="author">Ronaldo Melo</span></small>
+    </footer>
+
+    <div class="modal-buttons">
+      <button type="button" id="btn-close-info" class="btn-cancel">Entendi</button>
+    </div>
+  </dialog>
+
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="spinner"></div>
+    <p>Processando imagem, aguarde...</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
