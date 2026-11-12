@@ -66,13 +66,15 @@ const sharedData = urlParam.get("share");
 
 if (sharedData) {
   try {
-    const decodedData = JSON.parse(atob(sharedData));
+    const decompressedText = LZString.decompressFromEncodedURIComponent(sharedData);
+
+    const decodedData = JSON.parse(decompressedText);
 
     listTitle.textContent = decodedData.titulo;
     tasks = decodedData.tarefas;
 
     localStorage.setItem("title_list", decodedData.titulo);
-
+    saveTasks();
     window.history.replaceState({}, document.title, window.location.pathname);
 
     alert("Lista compartilhada carregada com sucesso!");
@@ -323,8 +325,8 @@ btnShare.addEventListener("click", () => {
 
   try {
     const dataAsText = JSON.stringify(listToShare);
-    const dataAsBase64 = btoa(dataAsText);
-    const linkFinal = `${window.location.origin}${window.location.pathname}?share=${dataAsBase64}`;
+    const compressedData = LZString.compressToEncodedURIComponent(dataAsText);
+    const linkFinal = `${window.location.origin}${window.location.pathname}?share=${compressedData}`;
 
     navigator.clipboard.writeText(linkFinal)
       .then(() => {
