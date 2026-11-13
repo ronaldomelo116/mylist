@@ -56,6 +56,8 @@ let dragStartIndex = null;
 // Recupera as tarefas do localStorage ou inicializa como um array vazio
 let tasks = JSON.parse(localStorage.getItem("my_tasks")) || [];
 
+tasks = tasks.map(t => typeof t === "string" ? { texto: t, concluida: false } : t);
+
 // Função para salvar as tarefas no localStorage
 function saveTasks() {
   localStorage.setItem("my_tasks", JSON.stringify(tasks));
@@ -100,10 +102,10 @@ function addTask() {
 
     if (indexForEditing === null) {
 
-      tasks.push(textInput);
+      tasks.push({ texto: textInput, concluida: false });
     } else {
 
-      tasks[indexForEditing] = textInput;
+      tasks[indexForEditing].texto = textInput;
 
       indexForEditing = null;
       buttonAdd.innerHTML = '<i class="bi bi-plus-lg"></i>';
@@ -143,10 +145,34 @@ function renderTasks() {
   //limpa a lista atual na tela para não duplicar itens
   listTask.innerHTML = "";
   //percorre cada tarefa do array
-  tasks.forEach((taskText, index) => {
+  tasks.forEach((task, index) => {
 
     const newLi = document.createElement("li");
-    newLi.textContent = taskText + " ";
+    const taskContent = document.createElement("div");
+    taskContent.classList.add("task-content");
+    // 2. Cria o Checkbox
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.classList.add("task-checkbox");
+    checkbox.checked = task.concluida; // Marca se já estiver concluída
+    // 3. Cria o elemento do Texto da tarefa
+    const taskSpan = document.createElement("span");
+    taskSpan.classList.add("task-text");
+    taskSpan.textContent = task.texto;
+    // Se estiver concluída, adiciona a classe do risco
+    if (task.concluida) {
+      taskSpan.classList.add("completed");
+    }
+    // 4. Quando clicar no Checkbox:
+    checkbox.addEventListener("change", () => {
+      task.concluida = checkbox.checked; // Inverte true/false
+      saveTasks();
+      renderTasks(); // Atualiza a tela com o risco
+    });
+    // Junta checkbox + texto
+    taskContent.appendChild(checkbox);
+    taskContent.appendChild(taskSpan);
+    newLi.appendChild(taskContent);
 
     //ativa o recurso de arrastar e soltar para cada item da lista
     newLi.setAttribute("draggable", true);
@@ -180,7 +206,7 @@ function renderTasks() {
 
     buttonDel.addEventListener("click", () => {
       indexToDelete = index;
-      itemNomeModal.textContent = `"${taskText}"`;
+      itemNomeModal.textContent = `"${task.texto}"`;
       modalDelete.showModal();
     });
 
@@ -192,7 +218,7 @@ function renderTasks() {
 
     buttonEdit.addEventListener("click", () => {
       indexForEditing = index;
-      inputEditTask.value = taskText;
+      inputEditTask.value = task.texto;
       modalEdit.showModal();
     });
 
@@ -233,7 +259,8 @@ btnN.addEventListener("click", () => {
 btnCopy.addEventListener("click", () => {
   let textToCopy = listTitle.textContent + "\n\n";
   tasks.forEach((tarefaAtual) => {
-    textToCopy += "- " + tarefaAtual + "\n";
+    const checkMark = tarefaAtual.concluida ? "[x] " : "[ ] ";
+    textToCopy += checkMark + tarefaAtual.texto + "\n";
   });
   navigator.clipboard.writeText(textToCopy)
     .then(() => {
@@ -252,7 +279,7 @@ btnCancelEdit.addEventListener("click", () => {
 btnSaveEdit.addEventListener("click", () => {
   const editedText = inputEditTask.value.trim();
   if (editedText !== "" && indexForEditing !== null) {
-    tasks[indexForEditing] = editedText;
+    tasks[indexForEditing].texto = editedText;
     saveTasks();
     renderTasks();
     modalEdit.close(); // Fecha o popup após salvar
@@ -405,8 +432,6 @@ cameraInput.addEventListener("change", async (evento) => {
       loadingOverlay.classList.remove("active");
     }
   }
-
-
 
 });
 

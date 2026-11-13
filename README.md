@@ -161,7 +161,7 @@ A aplicação roda inteiramente no navegador e não exige a instalação de paco
 - [x] Transições e microinterações de entrada (`keyframes`) e saída fluida.
 - [x] Cópia formatada para a área de transferência com um clique (`Clipboard API`).
 - [x] Marcador numérico indicando o total de registros ativos.
-- [ ] Marcação de afazeres concluídos (efeito tachado via checkbox).
+- [x] Marcação de afazeres concluídos (efeito tachado via checkbox).
 - [ ] Campo de pesquisa para filtrar itens em tempo real.
 - [ ] Visualização segmentada por estado (todas, pendentes e finalizadas).
 
