@@ -563,6 +563,7 @@ input {
   padding: 0.5rem 1.2rem;
   border: none;
   border-radius: 8px;
+  cursor: pointer;
   transition:
     background-color 0.2s ease,
     transform 0.1s ease;
@@ -580,6 +581,7 @@ input {
   padding: 0.5rem 1.2rem;
   border: none;
   border-radius: 8px;
+  cursor: pointer;
   transition:
     background-color 0.2s ease,
     transform 0.1s ease;
