@@ -49,6 +49,11 @@ const dragTip = document.getElementById("drag-tip");
 // Variável para o botão de compartilhamento
 const btnShare = document.getElementById("btn-share");
 
+// Variáveis para o toast
+const toast = document.getElementById("toast");
+const toastMessage = document.getElementById("toast-message");
+let toastTimeout; 
+
 // Variáveis de controle
 let indexToDelete = null;
 let indexForEditing = null;
@@ -79,14 +84,13 @@ if (sharedData) {
     saveTasks();
     window.history.replaceState({}, document.title, window.location.pathname);
 
-    alert("Lista compartilhada carregada com sucesso!");
+    showToast("Lista compartilhada carregada com sucesso!");
 
   } catch (error) {
     console.error("Erro ao carregar a lista compartilhada:", error);
     alert("O link da lista parece estar quebrado ou inválido.")
   }
 }
-
 
 // Recupera o título salvo do localStorage ao carregar a página
 const titleSave = localStorage.getItem("title_list");
@@ -255,6 +259,18 @@ btnN.addEventListener("click", () => {
   modalDelete.close(); // Fecha o popup sem fazer nada
 });
 
+// Função para mostrar o toast
+function showToast(mensagem) {
+  toastMessage.textContent = mensagem;
+  toast.classList.add("show");
+
+  clearTimeout(toastTimeout);
+
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2500);
+}
+
 // Função para copiar a lista de tarefas para a área de transferência
 btnCopy.addEventListener("click", () => {
   let textToCopy = listTitle.textContent + "\n\n";
@@ -264,7 +280,7 @@ btnCopy.addEventListener("click", () => {
   });
   navigator.clipboard.writeText(textToCopy)
     .then(() => {
-      alert("Lista copiada com sucesso!");
+      showToast("Lista copiada com sucesso!");
     })
     .catch((err) => {
       console.error("Erro ao copiar a lista: ", err);
@@ -357,7 +373,7 @@ btnShare.addEventListener("click", () => {
 
     navigator.clipboard.writeText(linkFinal)
       .then(() => {
-        alert("Link de compartilhamento copiado! Envie para os seus amigos.");
+        showToast("Link de compartilhamento copiado! Envie para os seus amigos.");
       })
       .catch(() => {
         // Fallback caso o navegador bloqueie a cópia automática

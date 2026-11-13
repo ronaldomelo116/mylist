@@ -27,7 +27,7 @@
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
   <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#ff6301">
+  <meta name="theme-color" content="#ff6301">
 </head>
 
 <body>
@@ -46,10 +46,10 @@
           <i class="bi bi-info-circle"></i>
         </button>
 
-      <button type="button" id="btn-theme" class="theme-toggle" title="Alternar Tema">
-        <i class="bi bi-sun-fill icon-sun"></i>
-        <i class="bi bi-moon-fill icon-moon"></i>
-      </button>
+        <button type="button" id="btn-theme" class="theme-toggle" title="Alternar Tema">
+          <i class="bi bi-sun-fill icon-sun"></i>
+          <i class="bi bi-moon-fill icon-moon"></i>
+        </button>
 
     </header>
 
@@ -181,6 +181,11 @@
   <div id="loading-overlay" class="loading-overlay">
     <div class="spinner"></div>
     <p>Processando imagem, aguarde...</p>
+  </div>
+
+  <div id="toast" class="toast">
+    <i class="bi bi-check-circle-fill"></i>
+    <span id="toast-message"></span>
   </div>
 
   <script src="script.js"></script>
