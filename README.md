@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="mylist/img/capa_anota_lista.png" alt="Anotalista Logo" width="380">
+  <img src="https://github.com/ronaldomelo116/mylist/blob/main/img/capa_anota_lista.png?raw=true" alt="Anotalista Logo" width="580">
 </p>
 
 # 📝 Anota Lista | Minha Lista
