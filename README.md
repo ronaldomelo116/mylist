@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="mylist/img/capa_anota_lista.png" alt="Anotalista Logo" width="380">
+</p>
+
 # 📝 Anota Lista | Minha Lista
 
 Uma aplicação web ágil, intuitiva e moderna para criação, priorização e organização de afazeres diários. Desenvolvida em JavaScript puro (Vanilla), conta com suporte a **PWA instalável**, identidade visual própria, alternância entre esquemas claro e escuro (Dark Mode), captura inteligente de texto via câmera com OCR (Tesseract.js), compartilhamento de listas via link, persistência no navegador, interface responsiva com fundos dinâmicos em SVG, caixas de diálogo nativas, animações fluidas, reordenação via *Drag and Drop* e uma central de ajuda acessível.
